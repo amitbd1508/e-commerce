@@ -7,25 +7,12 @@ const userSchema = new mongoose.Schema({
   password: String
 });
 
-// Before saving the user, hash the password
-userSchema.pre('save', function(next): void {
-  const user = this;
-  if (!user.isModified('password')) { return next(); }
-  bcrypt.genSalt(10, (err, salt) => {
-    if (err) { return next(err); }
-    bcrypt.hash(user.password, salt, (error, hash) => {
-      if (error) { return next(error); }
-      user.password = hash;
-      next();
-    });
-  });
-});
+userSchema.methods.generateHash = (password) => {
+  return bcrypt.hashSync(password, 8);
+};
 
-userSchema.methods.comparePassword = function(candidatePassword, callback): void {
-  bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
-    if (err) { return callback(err); }
-    callback(null, isMatch);
-  });
+userSchema.methods.validPassword = function(password): any {
+  return bcrypt.compareSync(password, this.password);
 };
 
 // Omit the password when returning a user

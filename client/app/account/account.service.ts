@@ -17,7 +17,7 @@ export class AccountService {
   }
 
   register(values: any): Observable<void> {
-    return this.http.post('/auth/register', values).pipe(
+    return this.http.post('/api/register', values).pipe(
       map((user: ICurrentUser) => {
         if (user) {
           localStorage.setItem('token', user.token);
@@ -28,7 +28,7 @@ export class AccountService {
   }
 
   login(values: any): Observable<any> {
-    return this.http.post('auth/login', values).pipe(
+    return this.http.post('/api/login', values).pipe(
       map((user: ICurrentUser) => {
         if (user) {
           localStorage.setItem('token', user.token);
@@ -53,7 +53,7 @@ export class AccountService {
     let headers = new HttpHeaders();
     headers = headers.set('Authorization', `Bearer ${token}`);
 
-    return this.http.get('/auth/account', {headers}).pipe(
+    return this.http.get('/api/account', {headers}).pipe(
       map((user: ICurrentUser) => {
         if (user) {
           localStorage.setItem('token', user.token);

@@ -4,9 +4,11 @@ import * as morgan from 'morgan';
 import * as path from 'path';
 import setMongo from './mongo';
 import setRoutes from './routes';
+import * as passport from 'passport';
 
 const app = express();
 dotenv.config();
+require('./config/passport')(passport);
 app.set('port', (process.env.PORT || 3000));
 app.use('/', express.static(path.join(__dirname, '../public')));
 app.use(express.json());
@@ -18,7 +20,7 @@ if (process.env.NODE_ENV !== 'test') {
 async function main(): Promise<any> {
   try {
     await setMongo();
-    setRoutes(app);
+    setRoutes(app, passport);
     app.get('/*', (req, res) => {
       res.sendFile(path.join(__dirname, '../public/index.html'));
     });
