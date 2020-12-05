@@ -1,34 +1,24 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-
-import { ToastComponent } from './toast/toast.component';
-import { LoadingComponent } from './loading/loading.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
+import {CartItemCounterComponent} from './components/cart-item-counter/cart-item-counter.component';
 
 @NgModule({
+  declarations: [
+    CartItemCounterComponent,
+  ],
   imports: [
-    BrowserModule,
-    FormsModule,
+    CommonModule,
     ReactiveFormsModule,
-    HttpClientModule
+    FormsModule,
+    RouterModule
   ],
   exports: [
-    // Shared Modules
-    BrowserModule,
-    FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    // Shared Components
-    ToastComponent,
-    LoadingComponent
+    CartItemCounterComponent,
   ],
-  declarations: [
-    ToastComponent,
-    LoadingComponent
-  ],
-  providers: [
-    ToastComponent
-  ]
+  providers: []
 })
-export class SharedModule { }
+export class SharedModule {
+}

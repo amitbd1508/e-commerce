@@ -1,0 +1,30 @@
+<div class="d-flex justify-content-center">
+  <div class="col-sm-8 col-md-6 col-lg-4">
+    <div class="card">
+      <div class="card-header">
+        <h4>Login</h4>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="form">
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input autocomplete="on" class="form-control" formControlName="email" id="email"
+                   placeholder="Enter email"
+                   type="email">
+            <small *ngIf="formErrors.email" class="text-danger">{{ formErrors.email }}</small>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input autocomplete="on" class="form-control" formControlName="password" id="password"
+                   placeholder="Password"
+                   type="password">
+            <small *ngIf="formErrors.password" class="text-danger">{{ formErrors.password }}</small>
+          </div>
+          <button (click)="onLogin()" [disabled]="form.invalid" class="btn btn-primary"
+                  type="submit">Login
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,59 +1,30 @@
-// Angular
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { JwtModule } from '@auth0/angular-jwt';
-// Modules
-import { AppRoutingModule } from './app-routing.module';
-import { SharedModule } from './shared/shared.module';
-// Services
-import { CatService } from './services/cat.service';
-import { UserService } from './services/user.service';
-import { AuthService } from './services/auth.service';
-import { AuthGuardLogin } from './services/auth-guard-login.service';
-import { AuthGuardAdmin } from './services/auth-guard-admin.service';
-// Components
-import { AppComponent } from './app.component';
-import { CatsComponent } from './cats/cats.component';
-import { AddCatFormComponent } from './add-cat-form/add-cat-form.component';
-import { AboutComponent } from './about/about.component';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
-import { LogoutComponent } from './logout/logout.component';
-import { AccountComponent } from './account/account.component';
-import { AdminComponent } from './admin/admin.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {CoreModule} from './core/core.module';
+import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
+import {JwtInterceptor} from './core/interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    CatsComponent,
-    AddCatFormComponent,
-    AboutComponent,
-    RegisterComponent,
-    LoginComponent,
-    LogoutComponent,
-    AccountComponent,
-    AdminComponent,
-    NotFoundComponent
+    AppComponent
   ],
   imports: [
+    BrowserModule,
     AppRoutingModule,
-    SharedModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: (): string => localStorage.getItem('token'),
-        // allowedDomains: ['localhost:3000', 'localhost:4200']
-      }
-    })
+    HttpClientModule,
+    BrowserAnimationsModule,
+    CoreModule
   ],
   providers: [
-    AuthService,
-    AuthGuardLogin,
-    AuthGuardAdmin,
-    CatService,
-    UserService
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
+    JwtHelperService,
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
-
 export class AppModule { }

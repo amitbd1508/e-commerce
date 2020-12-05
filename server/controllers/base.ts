@@ -35,7 +35,7 @@ abstract class BaseCtrl {
   // Get by id
   get = async (req, res) => {
     try {
-      const obj = await this.model.findOne({ _id: req.params.id });
+      const obj = await this.model.findOne({ id: req.params.id });
       res.status(200).json(obj);
     } catch (err) {
       return res.status(500).json({ error: err.message });
@@ -59,6 +59,15 @@ abstract class BaseCtrl {
       res.sendStatus(200);
     } catch (err) {
       return res.status(400).json({ error: err.message });
+    }
+  }
+
+  insertAll = async (data) => {
+    try{
+      return await this.model.insertMany(data);
+    } catch (err) {
+      console.log(err.toLocaleString());
+      return err;
     }
   }
 }

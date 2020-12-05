@@ -13,6 +13,7 @@
     "build": "ng build && tsc -p server",
     "buildprod": "ng build --aot --prod && tsc -p server",
     "start": "node dist/server/app.js",
+    "seed": "tsc -p server && node dist/server/seed.js",
     "predev": "tsc -p server",
     "dev": "concurrently \"mongod\" \"ng serve --open\" \"tsc -w -p server\" \"nodemon dist/server/app.js\"",
     "prod": "concurrently \"mongod\" \"ng build --aot --prod && tsc -p server && node dist/server/app.js\"",
@@ -42,11 +43,12 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.13",
     "morgan": "^1.10.0",
+    "ngx-bootstrap": "^6.2.0",
     "popper.js": "^1.16.1",
     "rxjs": "~6.6.0",
     "rxjs-compat": "~6.5.4",
-    "tslib": "^2.0.0",
     "tether": "^1.4.7",
+    "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

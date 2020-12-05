@@ -1,20 +1,16 @@
 import * as express from 'express';
 
-import CatCtrl from './controllers/cat';
 import UserCtrl from './controllers/user';
+import ProductCtrl from './controllers/product';
 
 function setRoutes(app): void {
   const router = express.Router();
-  const catCtrl = new CatCtrl();
+  const productCtrl = new ProductCtrl();
   const userCtrl = new UserCtrl();
 
-  // Cats
-  router.route('/cats').get(catCtrl.getAll);
-  router.route('/cats/count').get(catCtrl.count);
-  router.route('/cat').post(catCtrl.insert);
-  router.route('/cat/:id').get(catCtrl.get);
-  router.route('/cat/:id').put(catCtrl.update);
-  router.route('/cat/:id').delete(catCtrl.delete);
+  // Products
+  router.route('/product').get(productCtrl.getAll);
+  router.route('/product/:id').get(productCtrl.get);
 
   // Users
   router.route('/login').post(userCtrl.login);

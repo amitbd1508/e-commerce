@@ -1,0 +1,55 @@
+<div *ngIf="product" class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div>
+        <h3 class="product-name">{{product.name}}</h3>
+      </div>
+      <div class="product-price">
+        <div class="price">
+          <h4>Price: <span>BDT{{product.price}}</span></h4>
+        </div>
+      </div>
+      <div class="product-qty">
+        <h4>Qty: </h4>
+        <div class="input-group">
+          <span class="input-group-btn">
+            <button (click)="decreaseQuantity()" class="quantity-left-minus btn btn-danger btn-number"
+                     type="button">
+                   <i class="fa fa-minus"></i>
+            </button>
+          </span>
+          <input class="form-control input-number" id="quantity" max="100" min="1" name="quantity" type="text"
+                 [(ngModel)]="quantity">
+          <span class="input-group-btn">
+              <button (click)="increaseQuantity()" class="quantity-right-plus btn btn-success btn-number" data-field=""
+                      data-type="plus" type="button">
+                   <i class="fa fa-plus"></i>
+              </button>
+          </span>
+        </div>
+      </div>
+      <div class="product-size-container">
+        <h4 class="product-size">Product Variants: <span class="product-base-size">{{selectedVariant.color}}</span></h4>
+        <div class="size-options">
+          <div (click)="selectColor(variant)" *ngFor="let variant of product.variants" class="size-box">
+            <h5 class="product-size-option">{{variant.color}}</h5>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="selectedVariant.size.length>0" class="product-size-container">
+        <h4 class="product-size">Product Size: <span class="product-base-size"></span>{{selectedVariantSize}}</h4>
+        <div class="size-options">
+          <div (click)="selectVariantSize(size)" *ngFor="let size of selectedVariant.size" class="size-box">
+            <h5 class="product-size-option">{{size}}</h5>
+          </div>
+        </div>
+      </div>
+      <div class="cart-button">
+        <button (click)="handleAddToCart(product)" [disabled]="!product.available" class="btn btn-success">Add to Cart
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>

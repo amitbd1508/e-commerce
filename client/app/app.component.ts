@@ -1,18 +1,27 @@
-import { AfterViewChecked, ChangeDetectorRef, Component } from '@angular/core';
-import { AuthService } from './services/auth.service';
+import {Component, OnInit} from '@angular/core';
+import {AccountService} from './account/account.service';
+import {ICurrentUser} from './shared/models/user';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements AfterViewChecked {
+export class AppComponent implements OnInit {
+  title = 'e-commerce';
+  currentUser$: Observable<ICurrentUser>;
 
-  constructor(public auth: AuthService,
-              private changeDetector: ChangeDetectorRef) { }
-
-  // This fixes: https://github.com/DavideViolante/Angular-Full-Stack/issues/105
-  ngAfterViewChecked(): void {
-    this.changeDetector.detectChanges();
+  constructor(private accountService: AccountService) {
   }
 
+  ngOnInit(): void {
+    this.loadCurrentUser();
+  }
+
+  loadCurrentUser(): void {
+    const token = localStorage.getItem('token');
+    this.accountService.loadCurrentUser(token).subscribe(() => {
+    }, error => console.log(error));
+  }
 }
