@@ -13,24 +13,9 @@ a {
   text-decoration: none;
 }
 
-.product-image img {
-  max-width: 100%;
-}
-
 h3.product-name {
   font-size: 40px;
   font-weight: 600;
-}
-
-.Product-rating {
-  font-weight: 600;
-  font-size: 22px;
-}
-
-.num-of-reviews {
-  font-size: 16px;
-  font-weight: 400;
-  color: #055ca7;
 }
 
 .product-price h4 {
@@ -86,7 +71,7 @@ h3.product-name {
 
 .product-size-container h4 {
   font-size: 16px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
   margin-top: 2rem;
 }
 
