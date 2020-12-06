@@ -23,7 +23,6 @@ export class ProductListComponent implements OnInit {
     this.service.getProducts().subscribe(
       data => {
         this.products = data;
-        this.toast.setMessage(`${this.products.length} products loaded`, 'info');
         console.log(data);
       },
       error => console.log(error),
