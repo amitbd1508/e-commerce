@@ -1,11 +1,10 @@
 import * as express from 'express';
-import * as jwt from 'jsonwebtoken';
 
 import UserCtrl from './controllers/user';
 import ProductCtrl from './controllers/product';
 import * as auth from './middleware/authenticator';
 
-function setRoutes(app, passport): void {
+function setRoutes(app): void {
   const router = express.Router();
   const productCtrl = new ProductCtrl();
   const userCtrl = new UserCtrl();
@@ -13,7 +12,6 @@ function setRoutes(app, passport): void {
   // Users
   router.route('/register').post(auth.register);
   router.route('/login').post(userCtrl.login);
-
   router.route('/account').get(auth.isJWTValid, userCtrl.currentUser);
 
   // Products
