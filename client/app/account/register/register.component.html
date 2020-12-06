@@ -1,3 +1,5 @@
+<app-toast [message]="toast.message"></app-toast>
+
 <div class="d-flex justify-content-center">
   <div class="col-sm-8 col-md-6 col-lg-4">
     <div class="card">
@@ -9,36 +11,41 @@
 
           <div class="form-group">
             <label for="name">Name</label>
-            <input class="form-control" formControlName="name" id="name" type="text">
-            <small *ngIf="formErrors.name" class="text-danger">{{ formErrors.name }}</small>
+            <input class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" formControlName="name" id="name" type="text">
+            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+              <div *ngIf="f.name.errors.required">Name is required</div>
+            </div>
           </div>
 
           <div class="form-group">
             <label for="email">Email address</label>
-            <input class="form-control" formControlName="email" id="email" type="email">
-            <small *ngIf="formErrors.email" class="text-danger">{{ formErrors.email }}</small>
+            <input class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" id="email" type="email">
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">Email is required</div>
+              <div *ngIf="f.email.errors">Email must be a valid email address</div>
+            </div>
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input autocomplete="on" class="form-control" formControlName="password" id="password" type="password">
-            <small *ngIf="formErrors.password" class="text-danger">{{ formErrors.password }}</small>
+            <input autocomplete="on" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" formControlName="password" id="password" type="password">
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+              <div *ngIf="f.password.errors.required">Password is required</div>
+              <div *ngIf="f.password.errors.minLength">Password must be at least 6 characters</div>
+            </div>
 
           </div>
 
           <div class="form-group">
             <label for="confirmPassword">Confirm Password</label>
-            <input autocomplete="on" class="form-control" formControlName="confirmPassword" id="confirmPassword"
+            <input autocomplete="on" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" class="form-control" formControlName="confirmPassword" id="confirmPassword"
                    type="password">
-            <small *ngIf="formErrors.confirmPassword" class="text-danger">{{ formErrors.confirmPassword }}</small>
+            <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+              <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+              <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+            </div>
           </div>
 
-          <ul *ngIf="errors" class="text-danger list-unstyled">
-            <li *ngFor="let error of errors">
-              {{error}}
-            </li>
-          </ul>
-
-          <button [disabled]="!form.valid" class="btn btn-primary btn-block"
+          <button class="btn btn-primary btn-block"
                   type="submit">Register
           </button>
         </form>

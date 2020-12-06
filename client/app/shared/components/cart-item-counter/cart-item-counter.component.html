@@ -1,2 +1,3 @@
-<i class="fa fa-shopping-cart"></i>
-({{currentCartSize}})
+<i class="fa fa-shopping-cart mr-2"></i>
+<span [ngClass]="currentCartSize > 0 ? 'badge-success': 'badge-danger' " class="badge ">{{currentCartSize}}</span>
+

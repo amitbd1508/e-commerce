@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {AccountService} from '../account.service';
 import {Router} from '@angular/router';
-import {controlsEqual, formErrors, validationConfig, validationMessages} from './register.validation';
-import Utils from '../../shared/helpers/helper-methods';
+import {mustMatch, validationConfig} from './register.validation';
+import {LoggerService} from '../../shared/service/logger.service';
+import {ToastComponent} from '../../shared/components/toast/toast.component';
 
 @Component({
   selector: 'app-register',
@@ -12,13 +13,12 @@ import Utils from '../../shared/helpers/helper-methods';
 })
 export class RegisterComponent implements OnInit {
   form: FormGroup;
-  formErrors = formErrors;
-  validationMessages = validationMessages;
-
-  errors: string[];
+  submitted = false;
 
   constructor(private fb: FormBuilder,
               private service: AccountService,
+              public toast: ToastComponent,
+              private loggerService: LoggerService,
               private router: Router) {
     this.buildForm();
   }
@@ -26,18 +26,28 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // convenience getter for easy access to form fields
+  get f(): any { return this.form.controls; }
+
   buildForm(): void {
     this.form = this.fb.group(validationConfig, {
-      validators: controlsEqual('password', 'confirmPassword')
+      validators: mustMatch('password', 'confirmPassword')
     });
-
-    this.form.valueChanges.subscribe(() => Utils.onFormValueChanged(this.form, this.validationMessages, this.formErrors));
   }
 
   onRegister(): void {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.form.invalid) {
+      return;
+    }
     this.service.register(this.form.value).subscribe(response => {
       this.router.navigateByUrl('/');
-    }, error => this.errors = error.errors);
+    }, error => {
+      this.toast.setMessage(error.error, 'danger');
+      this.loggerService.logError('RegisterComponent', error.error);
+    });
   }
 
 }

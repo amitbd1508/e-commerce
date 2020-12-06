@@ -2,13 +2,14 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {CartItem} from '../shared/models/cart';
+import {MessengerService} from '../shared/service/messenger.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  constructor(private http: HttpClient) {
+  constructor(private messengerService: MessengerService) {
   }
 
   getCartItems(): CartItem[] {
@@ -31,6 +32,7 @@ export class CartService {
     }
     currentCart.push(cartItem);
     localStorage.setItem('cartItems', JSON.stringify(currentCart));
+    this.messengerService.updateCart();
 
     return currentCart;
   }
@@ -54,6 +56,7 @@ export class CartService {
     }
 
     localStorage.setItem('cartItems', JSON.stringify(currentCart));
+    this.messengerService.updateCart();
   }
 
   removeCartItem(cartItem: CartItem): void {
@@ -66,6 +69,7 @@ export class CartService {
     }
 
     localStorage.setItem('cartItems', JSON.stringify(currentCart));
+    this.messengerService.updateCart();
   }
 
   clearCart(): void {

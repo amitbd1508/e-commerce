@@ -43,8 +43,8 @@ export class AccountService {
     localStorage.removeItem('token');
     localStorage.removeItem('cartItems');
     this.currentUserSource.next(null);
-    this.messengerService.clearCart();
-    this.router.navigateByUrl('account/login');
+    this.messengerService.updateCart();
+    this.router.navigateByUrl('/account/login');
   }
 
   loadCurrentUser(token: string): any {

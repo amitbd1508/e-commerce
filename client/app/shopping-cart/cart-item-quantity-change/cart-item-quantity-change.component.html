@@ -1,20 +1,16 @@
-<div>
-  <div>
-    <div class="btn-group">
-      <button (click)="decrement(cartItem)"
-              class="btn btn-danger mr-4"
-              type="button">
-        <i class="fa fa-minus"></i>
-      </button>
-      <input class="form-control text-black" max="100" min="1" name="quantity"
-             type="number"
-             disabled
-             [(ngModel)]="cartItem.quantity">
-      <button (click)="increment(cartItem)"
-              class="btn btn-success ml-4"
-              type="button">
-        <i class="fa fa-plus"></i>
-      </button>
-    </div>
-  </div>
+<div class="btn-group">
+  <button (click)="decrement(cartItem)"
+          class="btn btn-danger mr-4"
+          type="button">
+    <i class="fa fa-minus"></i>
+  </button>
+  <input class="form-control text-black" max="100" min="1" name="quantity"
+         type="number"
+         disabled
+         [(ngModel)]="cartItem.quantity">
+  <button (click)="increment(cartItem)"
+          class="btn btn-success ml-4"
+          type="button">
+    <i class="fa fa-plus"></i>
+  </button>
 </div>

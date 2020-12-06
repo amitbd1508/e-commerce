@@ -14,10 +14,10 @@ async function seed(): Promise<void> {
 
     await productCtrl.deleteAll();
     await productCtrl.insertMany(products);
-    console.log('Product seeding completed');
+    console.log('Seed: Product seeding completed');
 
   } catch (err) {
-    console.error(err);
+    console.error(`Seed: ${err.toString()}`);
   }
 }
 

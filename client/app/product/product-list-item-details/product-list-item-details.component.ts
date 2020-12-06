@@ -75,8 +75,7 @@ export class ProductListItemDetailsComponent implements OnInit {
     };
 
     this.cartService.addProductToCart(cartItem);
-    this.messengerService.addProduct(product);
-    this.toast.setMessage(`Products is added to cart`, 'info');
+    this.toast.setMessage(`Products is added to cart`, 'warning');
 
     this.router.navigate(['/product']);
   }

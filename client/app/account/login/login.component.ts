@@ -4,6 +4,8 @@ import {formErrors, validationConfig, validationMessages} from './login.validati
 import {AccountService} from '../account.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import Utils from '../../shared/helpers/helper-methods';
+import {LoggerService} from '../../shared/service/logger.service';
+import {ToastComponent} from '../../shared/components/toast/toast.component';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +22,8 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private service: AccountService,
               private router: Router,
+              private logger: LoggerService,
+              public toast: ToastComponent,
               private activatedRoute: ActivatedRoute) {
     this.buildForm();
   }
@@ -38,6 +42,9 @@ export class LoginComponent implements OnInit {
   onLogin(): void {
     this.service.login(this.form.value).subscribe(() => {
       this.router.navigateByUrl(this.returnUrl);
-    }, error => console.log(error));
+    }, error => {
+      this.toast.setMessage(`${error.error}`, 'danger');
+      this.logger.logError('LoginComponent', error.error);
+    });
   }
 }

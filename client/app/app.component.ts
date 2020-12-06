@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AccountService} from './account/account.service';
 import {CurrentUser} from './shared/models/user';
 import {Observable} from 'rxjs';
+import {LoggerService} from './shared/service/logger.service';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +10,8 @@ import {Observable} from 'rxjs';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'e-commerce';
-  currentUser$: Observable<CurrentUser>;
 
-  constructor(private accountService: AccountService) {
+  constructor(private accountService: AccountService, private loggerService: LoggerService) {
   }
 
   ngOnInit(): void {
@@ -22,6 +21,6 @@ export class AppComponent implements OnInit {
   loadCurrentUser(): void {
     const token = localStorage.getItem('token');
     this.accountService.loadCurrentUser(token).subscribe(() => {
-    }, error => console.log(error));
+    }, error => this.loggerService.logError('AppComponent', error.error));
   }
 }

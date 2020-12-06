@@ -11,12 +11,8 @@ export class MessengerService {
   constructor() {
   }
 
-  addProduct(product: Product): void {
-    this.cartSubject.next(product);
-  }
-
-  clearCart(): void {
-    this.cartSubject.next(null);
+  updateCart(): void {
+    this.cartSubject.next('update-cart');
   }
 
   getCartChangeNotification(): Observable<any> {

@@ -74,7 +74,6 @@ describe('User API', () => {
     });
 
     it('should get current account', done => {
-      console.log(token);
       chai.request(app)
         .get('/api/account')
         .set({Authorization: `Bearer ${token}`})

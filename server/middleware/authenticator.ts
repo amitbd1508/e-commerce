@@ -9,6 +9,7 @@ export function isJWTValid(req: any, res: any, next: any): any {
 export function register(req, res, next): any {
   passport.authenticate('local-signup', (err, doc, info) => {
     if (err || !doc) {
+      console.log(info);
       const message = info ? info.message : 'Invalid arguments.';
       return res.status(400).json(message);
     }

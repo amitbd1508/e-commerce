@@ -7,8 +7,7 @@ export const validationMessages = {
   },
   password: {
     required: 'is required.',
-    minlength: 'Minimum 4 characters long.',
-    maxlength: 'Cannot be more than 100 characters long.'
+    minlength: 'Minimum 6 characters long.',
   }
 };
 
@@ -19,5 +18,5 @@ export const formErrors = {
 
 export const validationConfig = {
   email: ['', [Validators.required, Validators.email]],
-  password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(100)]]
+  password: ['', [Validators.required, Validators.minLength(6)]]
 };

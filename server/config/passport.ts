@@ -39,7 +39,7 @@ module.exports = (passport: any) => {
             return done(err);
           }
           if (user) {
-            return done(null, false, null);
+            return done(null, false, {message: 'User with this email already exist!'});
           } else {
             const newUser = new User();
             newUser.name = req.body.name;
@@ -52,11 +52,8 @@ module.exports = (passport: any) => {
               return done(null, newUser);
             });
           }
-
         });
-
       });
-
     }));
 
   /*
@@ -71,17 +68,17 @@ module.exports = (passport: any) => {
       passReqToCallback: true,
     },
     (req: any, email: any, password: any, done: any) => { // callback with email and password from our form
-      User.findOne({'local.email': email}, (err: any, user: any) => {
+      User.findOne({email}, (err: any, user: any) => {
         if (err) {
           return done(err);
         }
 
         if (!user) {
-          return done(null, false, console.log('no user found'));
+          return done(null, false, console.error('Passport: User not found.'));
         }
 
         if (!user.validPassword(password)) {
-          return done(null, false, console.log('wrong password'));
+          return done(null, false, console.error('Passport: Invalid password.'));
         }
 
         return done(null, user);

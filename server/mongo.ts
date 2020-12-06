@@ -17,7 +17,7 @@ async function setMongo(): Promise<void> {
 
   // Connect to MongoDB using Mongoose
   await mongoose.connect(mongodbURI);
-  console.log('Connected to MongoDB'); // Fixme: add try error
+  console.log('Mongo: Connected to MongoDB'); // Fixme: add try error
 }
 
 export default setMongo;
