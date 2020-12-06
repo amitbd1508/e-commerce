@@ -1,7 +1,7 @@
 /*
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CartItemQuntityChangeComponent } from './cart-item-quntity-change.component';
+import { CartItemQuntityChangeComponent } from './cart-item-quantity-change.component';
 
 describe('CartItemQuntityChangeComponent', () => {
   let component: CartItemQuntityChangeComponent;

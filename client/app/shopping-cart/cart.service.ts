@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
-import {ICartItem} from '../shared/models/cart';
+import {CartItem} from '../shared/models/cart';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +11,12 @@ export class CartService {
   constructor(private http: HttpClient) {
   }
 
-  getCartItems(): ICartItem[] {
+  getCartItems(): CartItem[] {
     return JSON.parse(localStorage.getItem('cartItems'));
   }
 
-  addProductToCart(cartItem: ICartItem): ICartItem[] {
-    let currentCart: ICartItem[] = JSON.parse(localStorage.getItem('cartItems'));
+  addProductToCart(cartItem: CartItem): CartItem[] {
+    let currentCart: CartItem[] = JSON.parse(localStorage.getItem('cartItems'));
     if (!currentCart) {
       currentCart = [];
     }
@@ -26,7 +26,7 @@ export class CartService {
     return currentCart;
   }
 
-  calculateCartTotal(cartItems: ICartItem[]): number {
+  calculateCartTotal(cartItems: CartItem[]): number {
     let cartTotal = 0;
     cartItems.forEach(item => {
       cartTotal += (item.quantity * item.productPrice);
@@ -35,8 +35,8 @@ export class CartService {
     return cartTotal;
   }
 
-  updateCart(updatedCartItem: ICartItem): void {
-    const currentCart: ICartItem[] = JSON.parse(localStorage.getItem('cartItems'));
+  updateCart(updatedCartItem: CartItem): void {
+    const currentCart: CartItem[] = JSON.parse(localStorage.getItem('cartItems'));
 
     for (let i = 0; i < currentCart.length; i++) {
       if (currentCart[i].id === updatedCartItem.id) {
@@ -47,8 +47,8 @@ export class CartService {
     localStorage.setItem('cartItems', JSON.stringify(currentCart));
   }
 
-  removeCartItem(cartItem: ICartItem): void {
-    const currentCart: ICartItem[] = JSON.parse(localStorage.getItem('cartItems'));
+  removeCartItem(cartItem: CartItem): void {
+    const currentCart: CartItem[] = JSON.parse(localStorage.getItem('cartItems'));
 
     for (let i = 0; i < currentCart.length; i++) {
       if (currentCart[i].id === cartItem.id) {

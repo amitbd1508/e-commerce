@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ICurrentUser} from '../shared/models/user';
+import {CurrentUser} from '../shared/models/user';
 import {Observable, of, ReplaySubject} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
@@ -11,7 +11,7 @@ import {MessengerService} from '../shared/service/messenger.service';
   providedIn: 'root'
 })
 export class AccountService {
-  private currentUserSource = new ReplaySubject<ICurrentUser>(1);
+  private currentUserSource = new ReplaySubject<CurrentUser>(1);
   currentUser$ = this.currentUserSource.asObservable();
 
   constructor(private http: HttpClient, private messengerService: MessengerService, private router: Router) {
@@ -19,7 +19,7 @@ export class AccountService {
 
   register(values: any): Observable<void> {
     return this.http.post('/api/register', values).pipe(
-      map((user: ICurrentUser) => {
+      map((user: CurrentUser) => {
         if (user) {
           localStorage.setItem('token', user.token);
           this.currentUserSource.next(user);
@@ -30,7 +30,7 @@ export class AccountService {
 
   login(values: any): Observable<any> {
     return this.http.post('/api/login', values).pipe(
-      map((user: ICurrentUser) => {
+      map((user: CurrentUser) => {
         if (user) {
           localStorage.setItem('token', user.token);
           this.currentUserSource.next(user);
@@ -57,7 +57,7 @@ export class AccountService {
     headers = headers.set('Authorization', `Bearer ${token}`);
 
     return this.http.get('/api/account', {headers}).pipe(
-      map((user: ICurrentUser) => {
+      map((user: CurrentUser) => {
         if (user) {
           localStorage.setItem('token', user.token);
           this.currentUserSource.next(user);

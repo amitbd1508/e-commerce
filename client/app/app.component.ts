@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AccountService} from './account/account.service';
-import {ICurrentUser} from './shared/models/user';
+import {CurrentUser} from './shared/models/user';
 import {Observable} from 'rxjs';
 
 @Component({
@@ -10,7 +10,7 @@ import {Observable} from 'rxjs';
 })
 export class AppComponent implements OnInit {
   title = 'e-commerce';
-  currentUser$: Observable<ICurrentUser>;
+  currentUser$: Observable<CurrentUser>;
 
   constructor(private accountService: AccountService) {
   }

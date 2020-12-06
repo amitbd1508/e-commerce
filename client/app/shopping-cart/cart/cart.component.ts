@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CartService} from '../cart.service';
-import {ICartItem} from '../../shared/models/cart';
+import {CartItem} from '../../shared/models/cart';
 import {ProductService} from '../../product/product.service';
 import {Router} from '@angular/router';
 
@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
 })
 export class CartComponent implements OnInit {
 
-  cartItems: ICartItem[];
+  cartItems: CartItem[];
   cartTotal: number;
 
   constructor(private service: CartService,
@@ -35,7 +35,7 @@ export class CartComponent implements OnInit {
     });
   }
 
-  removeItem(cartItem: ICartItem): void {
+  removeItem(cartItem: CartItem): void {
     this.service.removeCartItem(cartItem);
     this.loadCart();
   }

@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
 
   buildForm(): void {
     this.form = this.fb.group(validationConfig, {
-      validators: controlsEqual('password', 'confirmPassword')
+      validators: controlsEqual('password', 'confirm-password')
     });
 
     this.form.valueChanges.subscribe(() => Utils.onFormValueChanged(this.form, this.validationMessages, this.formErrors));

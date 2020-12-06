@@ -22,10 +22,10 @@
           <td>{{cartItem.variantColor}}</td>
           <td>{{cartItem.variantSize}}</td>
           <td>
-            <app-cart-item-quntity-change
+            <app-cart-item-quantity-change
               (quantityChange)="onChangeQuantity($event)"
               [cartItem]="cartItem">
-            </app-cart-item-quntity-change>
+            </app-cart-item-quantity-change>
           </td>
           <td>
             {{cartItem.productPrice * cartItem.quantity}}

@@ -6,7 +6,7 @@ export interface User {
   updatedAt: Date;
 }
 
-export interface ICurrentUser {
+export interface CurrentUser {
   name: string;
   email: string;
   token: string;

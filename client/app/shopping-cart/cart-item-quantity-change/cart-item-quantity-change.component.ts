@@ -1,15 +1,15 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ICartItem} from '../../shared/models/cart';
+import {CartItem} from '../../shared/models/cart';
 import {CartService} from '../cart.service';
 
 @Component({
-  selector: 'app-cart-item-quntity-change',
-  templateUrl: './cart-item-quntity-change.component.html',
-  styleUrls: ['./cart-item-quntity-change.component.scss']
+  selector: 'app-cart-item-quantity-change',
+  templateUrl: './cart-item-quantity-change.component.html',
+  styleUrls: ['./cart-item-quantity-change.component.scss']
 })
-export class CartItemQuntityChangeComponent implements OnInit {
+export class CartItemQuantityChangeComponent implements OnInit {
 
-  @Input() cartItem: ICartItem;
+  @Input() cartItem: CartItem;
   @Output() quantityChange: EventEmitter<string> = new EventEmitter<string>();
 
 
@@ -18,7 +18,7 @@ export class CartItemQuntityChangeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  decrement(cartItem: ICartItem): void {
+  decrement(cartItem: CartItem): void {
     if (cartItem.quantity > 1) {
       cartItem.quantity--;
       this.service.updateCart(cartItem);
@@ -26,7 +26,7 @@ export class CartItemQuntityChangeComponent implements OnInit {
     }
   }
 
-  increment(cartItem: ICartItem): void {
+  increment(cartItem: CartItem): void {
     cartItem.quantity++;
     this.service.updateCart(cartItem);
     this.quantityChange.emit('decrement');

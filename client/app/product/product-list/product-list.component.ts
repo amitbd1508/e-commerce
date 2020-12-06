@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../product.service';
-import {IProduct} from '../../shared/models/IProduct';
+import {Product} from '../../shared/models/product';
 import {ToastComponent} from '../../shared/components/toast/toast.component';
 
 @Component({
@@ -10,7 +10,7 @@ import {ToastComponent} from '../../shared/components/toast/toast.component';
 })
 export class ProductListComponent implements OnInit {
 
-  products: IProduct[];
+  products: Product[];
   isLoading = true;
   constructor(private service: ProductService, public toast: ToastComponent) {
   }

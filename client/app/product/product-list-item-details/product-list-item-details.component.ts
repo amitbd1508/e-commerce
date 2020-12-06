@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProductService} from '../product.service';
-import {IProduct, IVariant} from '../../shared/models/IProduct';
+import {Product, Variant} from '../../shared/models/product';
 import {MessengerService} from '../../shared/service/messenger.service';
 import {CartService} from '../../shopping-cart/cart.service';
-import {ICartItem} from '../../shared/models/cart';
+import {CartItem} from '../../shared/models/cart';
 import {ToastComponent} from '../../shared/components/toast/toast.component';
 
 @Component({
@@ -14,10 +14,10 @@ import {ToastComponent} from '../../shared/components/toast/toast.component';
 })
 export class ProductListItemDetailsComponent implements OnInit {
 
-  product: IProduct = null;
+  product: Product = null;
   quantity = 1;
 
-  selectedVariant: IVariant;
+  selectedVariant: Variant;
   selectedVariantSize: string;
 
   isLoading = true;
@@ -63,8 +63,8 @@ export class ProductListItemDetailsComponent implements OnInit {
     }
   }
 
-  handleAddToCart(product: IProduct): void {
-    const cartItem: ICartItem = {
+  handleAddToCart(product: Product): void {
+    const cartItem: CartItem = {
       id: Math.floor(Math.random() * 1000000),
       productId: product.id,
       productPrice: product.price,
@@ -81,7 +81,7 @@ export class ProductListItemDetailsComponent implements OnInit {
     this.router.navigate(['/product']);
   }
 
-  selectColor(variant: IVariant): void {
+  selectColor(variant: Variant): void {
     this.selectedVariant = variant;
     this.selectedVariantSize = variant.size[0];
     this.quantity = 1;

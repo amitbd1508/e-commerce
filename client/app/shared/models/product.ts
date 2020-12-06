@@ -1,20 +1,15 @@
-export class IProductResponse {
-  products: IProduct[] = [];
-  timestamps: Date;
-}
-
-export interface IVariant {
+export interface Variant {
   color: string;
   size: string[];
   quantity: number;
 }
 
-export interface IProduct {
+export interface Product {
   id: string;
   name: string;
   price: number;
   available: boolean;
-  variants: IVariant[];
+  variants: Variant[];
   createdAt: Date;
   updatedAt: Date;
 }

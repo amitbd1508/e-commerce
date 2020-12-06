@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
-import {IProduct} from '../models/IProduct';
+import {Product} from '../models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class MessengerService {
   constructor() {
   }
 
-  addProduct(product: IProduct): void {
+  addProduct(product: Product): void {
     this.cartSubject.next(product);
   }
 

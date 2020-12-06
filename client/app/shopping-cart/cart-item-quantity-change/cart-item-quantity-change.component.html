@@ -1,0 +1,22 @@
+<div>
+  <div>
+    <span>
+        <button (click)="decrement(cartItem)"
+                class="quantity-left-minus btn btn-danger btn-number"
+                type="button">
+          <i class="fa fa-minus"></i>
+        </button>
+    </span>
+    <input class="form-control" max="100" min="1" name="quantity"
+           type="number"
+           disabled
+           [(ngModel)]="cartItem.quantity">
+    <span class="input-group-btn">
+      <button (click)="increment(cartItem)"
+              class="quantity-right-plus btn btn-success btn-number"
+              type="button">
+        <i class="fa fa-plus"></i>
+      </button>
+    </span>
+  </div>
+</div>

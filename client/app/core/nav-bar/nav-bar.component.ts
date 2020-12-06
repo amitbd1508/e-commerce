@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {AccountService} from '../../account/account.service';
-import {ICurrentUser} from '../../shared/models/user';
+import {CurrentUser} from '../../shared/models/user';
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,7 +9,7 @@ import {ICurrentUser} from '../../shared/models/user';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-  currentUser$: Observable<ICurrentUser>;
+  currentUser$: Observable<CurrentUser>;
 
   constructor(private accountService: AccountService) {
   }

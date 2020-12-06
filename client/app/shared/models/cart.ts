@@ -1,4 +1,4 @@
-export interface ICartItem {
+export interface CartItem {
   id: number;
   productId: string;
   productName: string;
@@ -6,9 +6,4 @@ export interface ICartItem {
   variantSize: string;
   productPrice: number;
   quantity: number;
-}
-
-export interface ICartResponse {
-  cartItems: ICartItem[];
-  timestamps: Date;
 }
