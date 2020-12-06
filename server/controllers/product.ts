@@ -4,9 +4,18 @@ import Product from '../models/product';
 class ProductCtrl extends BaseCtrl {
   model = Product;
 
-  insertAll = async (data) => {
+  insertMany = async (data) => {
     try{
       return await this.model.insertMany(data);
+    } catch (err) {
+      console.log(err.toLocaleString());
+      return err;
+    }
+  }
+
+  deleteAll = async () => {
+    try{
+      return await this.model.deleteMany({});
     } catch (err) {
       console.log(err.toLocaleString());
       return err;
