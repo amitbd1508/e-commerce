@@ -12,21 +12,21 @@ export const validationMessages = {
   },
   password: {
     required: 'is required.',
+    password: 'Write your password properly',
     minlength: 'Minimum 4 characters long.',
-    maxlength: 'Cannot be more than 100 characters long.'
   },
   confirmPassword: {
     required: 'is required.',
+    confirmPassword: 'Must be same as password',
     minlength: 'Minimum 4 characters long.',
-    maxlength: 'Cannot be more than 100 characters long.'
   }
 };
 
 export const formErrors = {
-  name: '',
-  email: '',
-  password: '',
-  confirmPassword: ''
+  name: 'Write your full name.',
+  email: 'Write your email.',
+  password: 'Write your password.',
+  confirmPassword: 'Please confirm your password.'
 };
 
 export const validationConfig = {
@@ -42,14 +42,22 @@ export const controlsEqual = (
   errorKey: string = controlName
 ) => (form: FormGroup) => {
   const control = form.get(controlName);
+  const equalControl = form.get(equalToName);
 
-  if (control.value !== form.get(equalToName).value) {
-    control.setErrors({[errorKey]: true});
+  if (control.value && !equalControl.value) {
+    control.setErrors(null);
+    equalControl.setErrors(null);
+    return null;
+  }
+  else if (control.value !== equalControl.value) {
+    control.setErrors({[errorKey]: true}, );
+    equalControl.setErrors({[errorKey]: true}, );
     return {
       [errorKey]: true
     };
   } else {
     control.setErrors(null);
+    equalControl.setErrors(null);
     return null;
   }
 };
