@@ -21,12 +21,12 @@ export class CartItemCounterComponent implements OnInit {
   }
 
   handleSubscription(): void {
-    this.messengerService.getAddProductNotification().subscribe((product) => {
+    this.messengerService.getCartChangeNotification().subscribe((payload) => {
       this.updateCartSize();
     });
   }
 
   updateCartSize(): void {
-    this.currentCartSize = this.cartService.getCartItems() ? this.cartService.getCartItems().length : 0;
+    this.currentCartSize = this.cartService.getCartItemsCount();
   }
 }

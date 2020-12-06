@@ -19,7 +19,7 @@ export class MessengerService {
     this.cartSubject.next(null);
   }
 
-  getAddProductNotification(): Observable<any> {
+  getCartChangeNotification(): Observable<any> {
     return this.cartSubject.asObservable();
   }
 }
