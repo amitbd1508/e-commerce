@@ -12,7 +12,16 @@ export class CartService {
   }
 
   getCartItems(): CartItem[] {
-    return JSON.parse(localStorage.getItem('cartItems'));
+    const cartItems: CartItem[] = JSON.parse(localStorage.getItem('cartItems'));
+    return cartItems ? cartItems : [];
+  }
+
+  getCartItemsCount(): number {
+    const cartItems: CartItem[] = JSON.parse(localStorage.getItem('cartItems'));
+    if (cartItems) {
+      return cartItems.length;
+    }
+    return 0;
   }
 
   addProductToCart(cartItem: CartItem): CartItem[] {
