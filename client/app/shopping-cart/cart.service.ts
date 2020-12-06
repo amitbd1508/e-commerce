@@ -58,4 +58,8 @@ export class CartService {
 
     localStorage.setItem('cartItems', JSON.stringify(currentCart));
   }
+
+  clearCart(): void {
+    localStorage.removeItem('cartItems');
+  }
 }

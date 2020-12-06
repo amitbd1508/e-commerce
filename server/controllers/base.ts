@@ -61,15 +61,6 @@ abstract class BaseCtrl {
       return res.status(400).json({ error: err.message });
     }
   }
-
-  insertAll = async (data) => {
-    try{
-      return await this.model.insertMany(data);
-    } catch (err) {
-      console.log(err.toLocaleString());
-      return err;
-    }
-  }
 }
 
 export default BaseCtrl;
