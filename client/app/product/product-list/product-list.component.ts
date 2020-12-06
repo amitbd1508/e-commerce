@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../product.service';
 import {Product} from '../../shared/models/product';
 import {ToastComponent} from '../../shared/components/toast/toast.component';
+import {LoggerService} from '../../shared/service/logger.service';
 
 @Component({
   selector: 'app-product-list',
@@ -13,7 +14,9 @@ export class ProductListComponent implements OnInit {
   products: Product[];
   isLoading = true;
 
-  constructor(private service: ProductService, public toast: ToastComponent) {
+  constructor(private service: ProductService,
+              private loggerService: LoggerService,
+              public toast: ToastComponent) {
   }
 
   ngOnInit(): void {
@@ -24,9 +27,8 @@ export class ProductListComponent implements OnInit {
     this.service.getProducts().subscribe(
       data => {
         this.products = data;
-        console.log(data);
       },
-      error => console.log(error),
+      error => this.loggerService.logError('ProductListComponent', error),
       () => this.isLoading = false
     );
   }

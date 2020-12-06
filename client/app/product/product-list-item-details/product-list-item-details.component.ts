@@ -6,6 +6,7 @@ import {MessengerService} from '../../shared/service/messenger.service';
 import {CartService} from '../../shopping-cart/cart.service';
 import {CartItem} from '../../shared/models/cart';
 import {ToastComponent} from '../../shared/components/toast/toast.component';
+import {LoggerService} from "../../shared/service/logger.service";
 
 @Component({
   selector: 'app-product-list-item-details',
@@ -26,8 +27,8 @@ export class ProductListItemDetailsComponent implements OnInit {
               private router: Router,
               private service: ProductService,
               private cartService: CartService,
-              public toast: ToastComponent,
-              private messengerService: MessengerService) {
+              private loggerService: LoggerService,
+              public toast: ToastComponent) {
   }
 
   ngOnInit(): void {
@@ -44,9 +45,8 @@ export class ProductListItemDetailsComponent implements OnInit {
           this.selectedVariantSize = this.product.variants[0].size[0];
         }
         this.toast.setMessage(`Products loaded`, 'info');
-        console.log(data);
       },
-      error => console.log(error),
+      error => this.loggerService.logError('ProductListItemDetailsComponent', error.toString()),
       () => this.isLoading = false
     );
   }
