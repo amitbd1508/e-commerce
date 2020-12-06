@@ -42,12 +42,12 @@ module.exports = (passport: any) => {
             return done(null, false, null);
           } else {
             const newUser = new User();
-            newUser.username = req.body.name;
+            newUser.name = req.body.name;
             newUser.email = email;
             newUser.password = newUser.generateHash(password);
-            newUser.save((err2: any) => {
-              if (err2) {
-                throw err2;
+            newUser.save((newUserSavingError: any) => {
+              if (newUserSavingError) {
+                throw newUserSavingError;
               }
               return done(null, newUser);
             });

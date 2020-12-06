@@ -2,10 +2,18 @@ import * as bcrypt from 'bcryptjs';
 import * as mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
-  username: String,
+  name: {
+    type: String,
+    required: true
+  },
   email: { type: String, unique: true, lowercase: true, trim: true },
-  password: String
-});
+  password: {
+    type: String,
+    required: true
+  },
+}).set('autoIndex', true)
+  .set('minimize', false)
+  .set('timestamps', true);
 
 userSchema.methods.generateHash = (password) => {
   return bcrypt.hashSync(password, 8);

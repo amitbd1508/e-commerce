@@ -6,7 +6,7 @@ export function generateAccessToken(user): any {
     name: user.name,
     email: user.email
   }, process.env.SECRET_TOKEN, {
-    expiresIn: '14d',
+    expiresIn: '7d',
     issuer: user._id.toString()
   });
 }
