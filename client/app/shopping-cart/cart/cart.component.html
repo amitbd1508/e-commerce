@@ -18,28 +18,10 @@
           <td>{{cartItem.variantColor}}</td>
           <td>{{cartItem.variantSize}}</td>
           <td>
-            <div class="product-qty">
-              <div class="input-group">
-                <span class="input-group-btn">
-                    <button (click)="decrement(cartItem)"
-                            class="quantity-left-minus btn btn-danger btn-number"
-                            type="button">
-                      <i class="fa fa-minus"></i>
-                    </button>
-                </span>
-                <input class="form-control input-number" max="100" min="1" name="quantity"
-                       type="text"
-                       disabled
-                       [(ngModel)]="cartItem.quantity">
-                <span class="input-group-btn">
-                  <button (click)="increment(cartItem)"
-                          class="quantity-right-plus btn btn-success btn-number"
-                          type="button">
-                    <i class="fa fa-plus"></i>
-                  </button>
-                </span>
-              </div>
-            </div>
+            <app-cart-item-quntity-change
+              (quantityChange)="onChangeQuantity($event)"
+              [cartItem]="cartItem">
+            </app-cart-item-quntity-change>
           </td>
           <td>
             {{cartItem.productPrice * cartItem.quantity}}

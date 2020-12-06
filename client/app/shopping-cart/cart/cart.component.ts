@@ -29,22 +29,12 @@ export class CartComponent implements OnInit {
     this.loadCart();
   }
 
-  decrement(cartItem: ICartItem): void {
-    if (cartItem.quantity > 1) {
-      cartItem.quantity--;
-      this.service.updateCart(cartItem);
-      this.loadCart();
-    }
-  }
-
-  increment(cartItem: ICartItem): void {
-    cartItem.quantity++;
-    this.service.updateCart(cartItem);
+  removeItem(cartItem: ICartItem): void {
+    this.service.removeCartItem(cartItem);
     this.loadCart();
   }
 
-  removeItem(cartItem: ICartItem): void {
-    this.service.removeCartItem(cartItem);
+  onChangeQuantity($event: string): void {
     this.loadCart();
   }
 }
