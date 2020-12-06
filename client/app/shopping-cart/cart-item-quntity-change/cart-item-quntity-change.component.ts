@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ICartItem} from '../../shared/models/cart';
-import {CartService} from "../cart.service";
+import {CartService} from '../cart.service';
 
 @Component({
   selector: 'app-cart-item-quntity-change',

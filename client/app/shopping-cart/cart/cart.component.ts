@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {CartService} from '../cart.service';
 import {ICartItem} from '../../shared/models/cart';
-import {ProductService} from "../../product/product.service";
-import {Router} from "@angular/router";
+import {ProductService} from '../../product/product.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -29,7 +29,7 @@ export class CartComponent implements OnInit {
   }
 
   checkOut(): void {
-    this.productService.checkout(this.service.getCartItems()).subscribe(it =>{
+    this.productService.checkout(this.service.getCartItems()).subscribe(it => {
       this.service.clearCart();
       this.router.navigate(['/product']);
     });
