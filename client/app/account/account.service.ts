@@ -5,6 +5,7 @@ import {environment} from '../../environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {Router} from '@angular/router';
+import {MessengerService} from '../shared/service/messenger.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AccountService {
   private currentUserSource = new ReplaySubject<ICurrentUser>(1);
   currentUser$ = this.currentUserSource.asObservable();
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private messengerService: MessengerService, private router: Router) {
   }
 
   register(values: any): Observable<void> {
@@ -40,7 +41,9 @@ export class AccountService {
 
   logout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('cartItems');
     this.currentUserSource.next(null);
+    this.messengerService.clearCart();
     this.router.navigateByUrl('account/login');
   }
 

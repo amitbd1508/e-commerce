@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../product.service';
 import {IProduct} from '../../shared/models/IProduct';
+import {ToastComponent} from '../../shared/components/toast/toast.component';
 
 @Component({
   selector: 'app-product-list',
@@ -10,8 +11,8 @@ import {IProduct} from '../../shared/models/IProduct';
 export class ProductListComponent implements OnInit {
 
   products: IProduct[];
-
-  constructor(private service: ProductService) {
+  isLoading = true;
+  constructor(private service: ProductService, public toast: ToastComponent) {
   }
 
   ngOnInit(): void {
@@ -19,9 +20,15 @@ export class ProductListComponent implements OnInit {
   }
 
   getProducts(): void {
-    this.service.getProducts().subscribe(response => {
-      this.products = response;
-    }, error => console.error(error));
+    this.service.getProducts().subscribe(
+      data => {
+        this.products = data;
+        this.toast.setMessage(`${this.products.length} products loaded`, 'info');
+        console.log(data);
+      },
+      error => console.log(error),
+      () => this.isLoading = false
+    );
   }
 
 }

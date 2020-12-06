@@ -1,3 +1,7 @@
+<app-loading [condition]="isLoading"></app-loading>
+
+<app-toast [message]="toast.message"></app-toast>
+
 <div class="container">
   <div class="row">
     <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 mt-4" *ngFor="let product of products; let i = index">

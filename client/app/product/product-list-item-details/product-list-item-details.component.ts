@@ -5,6 +5,7 @@ import {IProduct, IVariant} from '../../shared/models/IProduct';
 import {MessengerService} from '../../shared/service/messenger.service';
 import {CartService} from '../../shopping-cart/cart.service';
 import {ICartItem} from '../../shared/models/cart';
+import {ToastComponent} from '../../shared/components/toast/toast.component';
 
 @Component({
   selector: 'app-product-list-item-details',
@@ -19,10 +20,13 @@ export class ProductListItemDetailsComponent implements OnInit {
   selectedVariant: IVariant;
   selectedVariantSize: string;
 
+  isLoading = true;
+
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
               private service: ProductService,
               private cartService: CartService,
+              public toast: ToastComponent,
               private messengerService: MessengerService) {
   }
 
@@ -32,13 +36,19 @@ export class ProductListItemDetailsComponent implements OnInit {
   }
 
   getById(id: string): void {
-    this.service.getProductById(id).subscribe(it => {
-      this.product = it;
-      if (this.product.variants.length > 0) {
-        this.selectedVariant = this.product.variants[0];
-        this.selectedVariantSize = this.product.variants[0].size[0];
-      }
-    });
+    this.service.getProductById(id).subscribe(
+      data => {
+        this.product = data;
+        if (this.product.variants.length > 0) {
+          this.selectedVariant = this.product.variants[0];
+          this.selectedVariantSize = this.product.variants[0].size[0];
+        }
+        this.toast.setMessage(`Products loaded`, 'info');
+        console.log(data);
+      },
+      error => console.log(error),
+      () => this.isLoading = false
+    );
   }
 
   increaseQuantity(): void {
@@ -66,8 +76,9 @@ export class ProductListItemDetailsComponent implements OnInit {
 
     this.cartService.addProductToCart(cartItem);
     this.messengerService.addProduct(product);
+    this.toast.setMessage(`Products is added to cart`, 'info');
 
-    this.router.navigate(['/cart']);
+    this.router.navigate(['/product']);
   }
 
   selectColor(variant: IVariant): void {

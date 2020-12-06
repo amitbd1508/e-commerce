@@ -1,5 +1,9 @@
 <div *ngIf="!cartItems || cartItems.length<0">
-  <h2>Please add product in cart</h2>
+  <div class="container">
+    <div>
+      <h2 class="m-4">Your cart is empty</h2>
+    </div>
+  </div>
 </div>
 <div *ngIf="cartItems" class="container">
   <div class="row">
@@ -27,7 +31,7 @@
             {{cartItem.productPrice * cartItem.quantity}}
           </td>
           <td>
-            <span class="input-group-btn">
+            <span>
               <button (click)="removeItem(cartItem)"
                       class="btn btn-danger btn-number" type="button">
                 <i class="fa fa-trash"></i>
@@ -37,11 +41,14 @@
         </tr>
 
         <tr>
+          <td colspan="6"></td>
+        </tr>
+        <tr>
           <td>
             Total(BDT):
           </td>
           <td colspan="3"></td>
-          <td>
+          <td colspan="2">
             {{cartTotal}}
           </td>
         </tr>
