@@ -2,7 +2,7 @@
 [![](https://github.com/amitbd1508/e-commerce/workflows/Build/badge.svg)](https://github.com/DavideViolante/Angular-Full-Stack/actions?query=workflow%3ABuild) [![](https://github.com/davideviolante/Angular-Full-Stack/workflows/Tests/badge.svg)](https://github.com/DavideViolante/Angular-Full-Stack/actions?query=workflow%3ATests) [![Dependencies](https://david-dm.org/DavideViolante/Angular-Full-Stack.svg)](https://david-dm.org/DavideViolante/Angular-Full-Stack) [![Donate](https://img.shields.io/badge/paypal-donate-179BD7.svg)](https://www.paypal.me/dviolante)
 
 
-Angular Full Stack is a project to easily get started with the latest Angular using a real backend and database. Whole stack is in TypeScript, from frontend to backend, giving you the advantage to code in one single language throughout the all stack.
+E Commerce is a project build with the latest Angular using a real backend and database. Whole stack is in TypeScript, from frontend to backend, giving you the advantage to code in one single language throughout the all stack.
 
 This project uses the [MEAN stack](https://en.wikipedia.org/wiki/MEAN_(software_bundle)):
 * [**M**ongoose.js](http://www.mongoosejs.com) ([MongoDB](https://www.mongodb.com)): database
@@ -19,8 +19,8 @@ Other tools and technologies used:
 * [Bcrypt.js](https://github.com/dcodeIO/bcrypt.js): password encryption
 
 ## Prerequisites
-1. Install [Node.js](https://nodejs.org) and [MongoDB](https://www.mongodb.com)
-2. Install Angular CLI: `npm i -g @angular/cli`
+1. Install [Node.js(14.9.0)](https://nodejs.org) and [MongoDB](https://www.mongodb.com)
+2. Install Angular CLI(11.0.3): `npm i -g @angular/cli`
 3. From project root folder install all the dependencies: `npm i`
 
 ## Run
