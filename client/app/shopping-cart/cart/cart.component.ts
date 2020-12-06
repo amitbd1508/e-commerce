@@ -3,6 +3,7 @@ import {CartService} from '../cart.service';
 import {CartItem} from '../../shared/models/cart';
 import {ProductService} from '../../product/product.service';
 import {Router} from '@angular/router';
+import {ToastComponent} from '../../shared/components/toast/toast.component';
 
 @Component({
   selector: 'app-cart',
@@ -16,6 +17,7 @@ export class CartComponent implements OnInit {
 
   constructor(private service: CartService,
               private router: Router,
+              public toast: ToastComponent,
               private productService: ProductService) {
   }
 
@@ -41,6 +43,10 @@ export class CartComponent implements OnInit {
   }
 
   onChangeQuantity($event: string): void {
-    this.loadCart();
+    if ($event !== 'failed') {
+      this.loadCart();
+    } else {
+      this.toast.setMessage('Cannot increase the quantity of this product!', 'danger');
+    }
   }
 }

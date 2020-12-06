@@ -6,4 +6,5 @@ export interface CartItem {
   variantSize: string;
   productPrice: number;
   quantity: number;
+  numberOfAvailableProduct: number;
 }

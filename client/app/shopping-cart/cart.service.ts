@@ -6,6 +6,11 @@ import {MessengerService} from '../shared/service/messenger.service';
   providedIn: 'root'
 })
 export class CartService {
+  /*
+   Fixme: Need to maintain the cart functionality in server side.
+   Due to time constraint i am skipping this feature by temporary hack.
+   It only works if product inventory is not decease/increase by any other order or user
+   */
 
   constructor(private messengerService: MessengerService) {
   }
@@ -17,13 +22,10 @@ export class CartService {
 
   getCartItemsCount(): number {
     const cartItems: CartItem[] = JSON.parse(localStorage.getItem('cartItems'));
-    if (cartItems) {
-      return cartItems.length;
-    }
-    return 0;
+    return cartItems ? cartItems.length : 0;
   }
 
-  addProductToCart(cartItem: CartItem): CartItem[] {
+  addProductToCart(cartItem: CartItem): boolean {
     let currentCart: CartItem[] = JSON.parse(localStorage.getItem('cartItems'));
     if (!currentCart) {
       currentCart = [];
@@ -32,7 +34,7 @@ export class CartService {
     localStorage.setItem('cartItems', JSON.stringify(currentCart));
     this.messengerService.updateCart();
 
-    return currentCart;
+    return true;
   }
 
   calculateCartTotal(cartItems: CartItem[]): number {
@@ -44,17 +46,22 @@ export class CartService {
     return cartTotal;
   }
 
-  updateCart(updatedCartItem: CartItem): void {
+  updateCart(updatedCartItem: CartItem): boolean {
     const currentCart: CartItem[] = JSON.parse(localStorage.getItem('cartItems'));
 
     for (let i = 0; i < currentCart.length; i++) {
       if (currentCart[i].id === updatedCartItem.id) {
         currentCart[i] = updatedCartItem;
+        localStorage.setItem('cartItems', JSON.stringify(currentCart));
+        this.messengerService.updateCart();
+        return true;
       }
     }
+    return false;
+  }
 
-    localStorage.setItem('cartItems', JSON.stringify(currentCart));
-    this.messengerService.updateCart();
+  canIncreaseQuantity(cartItem: CartItem): boolean {
+    return cartItem.quantity < cartItem.numberOfAvailableProduct;
   }
 
   removeCartItem(cartItem: CartItem): void {

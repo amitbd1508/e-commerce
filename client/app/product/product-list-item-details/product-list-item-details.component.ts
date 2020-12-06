@@ -6,7 +6,7 @@ import {MessengerService} from '../../shared/service/messenger.service';
 import {CartService} from '../../shopping-cart/cart.service';
 import {CartItem} from '../../shared/models/cart';
 import {ToastComponent} from '../../shared/components/toast/toast.component';
-import {LoggerService} from "../../shared/service/logger.service";
+import {LoggerService} from '../../shared/service/logger.service';
 
 @Component({
   selector: 'app-product-list-item-details',
@@ -44,7 +44,9 @@ export class ProductListItemDetailsComponent implements OnInit {
           this.selectedVariant = this.product.variants[0];
           this.selectedVariantSize = this.product.variants[0].size[0];
         }
-        this.toast.setMessage(`Products loaded`, 'info');
+        if (!this.product.available) {
+          this.toast.setMessage(`Currently this  product is not available`, 'info');
+        }
       },
       error => this.loggerService.logError('ProductListItemDetailsComponent', error.toString()),
       () => this.isLoading = false
@@ -71,11 +73,12 @@ export class ProductListItemDetailsComponent implements OnInit {
       productName: product.name,
       variantColor: this.selectedVariant.color,
       variantSize: this.selectedVariantSize,
-      quantity: this.quantity
+      quantity: this.quantity,
+      numberOfAvailableProduct: this.selectedVariant.quantity
     };
 
     this.cartService.addProductToCart(cartItem);
-    this.toast.setMessage(`Products is added to cart`, 'warning');
+    this.toast.setMessage(`Products is added to cart. Please go to cart for checkout !`, 'warning');
 
     this.router.navigate(['/product']);
   }
