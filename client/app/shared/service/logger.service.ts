@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {environment} from '../../../environments/environment';
 
 @Injectable({
@@ -6,7 +6,8 @@ import {environment} from '../../../environments/environment';
 })
 export class LoggerService {
 
-  constructor() { }
+  constructor() {
+  }
 
   log(location: string, message: string): void {
     if (!environment.production) {

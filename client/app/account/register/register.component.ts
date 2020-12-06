@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {AccountService} from '../account.service';
 import {Router} from '@angular/router';
 import {mustMatch, validationConfig} from './register.validation';
@@ -23,11 +23,13 @@ export class RegisterComponent implements OnInit {
     this.buildForm();
   }
 
-  ngOnInit(): void {
+  // convenience getter for easy access to form fields
+  get f(): any {
+    return this.form.controls;
   }
 
-  // convenience getter for easy access to form fields
-  get f(): any { return this.form.controls; }
+  ngOnInit(): void {
+  }
 
   buildForm(): void {
     this.form = this.fb.group(validationConfig, {

@@ -1,6 +1,4 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {environment} from '../../environments/environment';
 import {CartItem} from '../shared/models/cart';
 import {MessengerService} from '../shared/service/messenger.service';
 

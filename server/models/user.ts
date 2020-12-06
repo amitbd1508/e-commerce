@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  email: { type: String, unique: true, lowercase: true, trim: true },
+  email: {type: String, unique: true, lowercase: true, trim: true},
   password: {
     type: String,
     required: true
@@ -19,7 +19,7 @@ userSchema.methods.generateHash = (password) => {
   return bcrypt.hashSync(password, 8);
 };
 
-userSchema.methods.validPassword = function(password): any {
+userSchema.methods.validPassword = function (password): any {
   return bcrypt.compareSync(password, this.password);
 };
 

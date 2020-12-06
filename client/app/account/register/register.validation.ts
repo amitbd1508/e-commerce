@@ -7,7 +7,7 @@ export const validationConfig = {
   confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
 };
 
-export function mustMatch(controlName: string, matchingControlName: string): any  {
+export function mustMatch(controlName: string, matchingControlName: string): any {
   return (formGroup: FormGroup) => {
     const control = formGroup.controls[controlName];
     const matchingControl = formGroup.controls[matchingControlName];
@@ -19,7 +19,7 @@ export function mustMatch(controlName: string, matchingControlName: string): any
 
     // set error on matchingControl if validation fails
     if (control.value !== matchingControl.value) {
-      matchingControl.setErrors({ mustMatch: true });
+      matchingControl.setErrors({mustMatch: true});
     } else {
       matchingControl.setErrors(null);
     }

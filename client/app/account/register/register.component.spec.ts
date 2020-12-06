@@ -1,14 +1,17 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {Router} from '@angular/router';
 
-import { RegisterComponent } from './register.component';
+import {RegisterComponent} from './register.component';
 import {ToastComponent} from '../../shared/components/toast/toast.component';
 import {AccountService} from '../account.service';
 
-class RouterMock { }
-class AccountServiceMock { }
+class RouterMock {
+}
+
+class AccountServiceMock {
+}
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -16,12 +19,12 @@ describe('RegisterComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [ FormsModule, ReactiveFormsModule ],
-      declarations: [ RegisterComponent ],
+      imports: [FormsModule, ReactiveFormsModule],
+      declarations: [RegisterComponent],
       providers: [
         ToastComponent,
-        { provide: Router, useClass: RouterMock },
-        { provide: AccountService, useClass: AccountServiceMock }
+        {provide: Router, useClass: RouterMock},
+        {provide: AccountService, useClass: AccountServiceMock}
       ]
     })
       .compileComponents();

@@ -4,14 +4,14 @@ const variantSchema = new mongoose.Schema({
   color: String,
   size: {
     type: [String],
-    enum : ['small', 'medium', 'large', 'extra-large']
+    enum: ['small', 'medium', 'large', 'extra-large']
   },
   quantity: {
     type: Number,
     required: true,
-    validate : {
-      validator : Number.isInteger,
-      message   : '{VALUE} is not an integer value'
+    validate: {
+      validator: Number.isInteger,
+      message: '{VALUE} is not an integer value'
     }
   }
 });
@@ -21,9 +21,9 @@ const productSchema = new mongoose.Schema({
     type: Number,
     unique: true,
     required: true,
-    validate : {
-      validator : Number.isInteger,
-      message   : '{VALUE} is not an integer value'
+    validate: {
+      validator: Number.isInteger,
+      message: '{VALUE} is not an integer value'
     }
   },
   name: {

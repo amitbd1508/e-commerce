@@ -1,5 +1,5 @@
-import { browser, logging } from 'protractor';
-import { Angular2FullStackPage } from './app.po';
+import {browser, logging} from 'protractor';
+import {Angular2FullStackPage} from './app.po';
 
 describe('Component: App', () => {
   let page: Angular2FullStackPage;

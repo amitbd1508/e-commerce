@@ -1,17 +1,22 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import { LoginComponent } from './login.component';
+import {LoginComponent} from './login.component';
 import {AccountService} from '../account.service';
 
-class AccountServiceMock { }
-class RouterMock { }
+class AccountServiceMock {
+}
+
+class RouterMock {
+}
+
 class ActivatedRouteMock {
   public snapshot = {
     queryParams: {
       returnUrl: '/'
-    }};
+    }
+  };
 }
 
 describe('LoginComponent', () => {
@@ -20,13 +25,13 @@ describe('LoginComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [ FormsModule, ReactiveFormsModule ],
-      declarations: [ LoginComponent ],
+      imports: [FormsModule, ReactiveFormsModule],
+      declarations: [LoginComponent],
       providers: [
         FormBuilder,
-        { provide: AccountService, useClass: AccountServiceMock },
-        { provide: Router, useClass: RouterMock },
-        { provide: ActivatedRoute, useClass: ActivatedRouteMock }
+        {provide: AccountService, useClass: AccountServiceMock},
+        {provide: Router, useClass: RouterMock},
+        {provide: ActivatedRoute, useClass: ActivatedRouteMock}
       ]
     })
       .compileComponents();

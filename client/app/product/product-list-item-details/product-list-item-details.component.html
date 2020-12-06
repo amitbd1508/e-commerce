@@ -17,12 +17,12 @@
         <div class="input-group">
           <span class="input-group-btn">
             <button (click)="decreaseQuantity()" class="quantity-left-minus btn btn-danger btn-number"
-                     type="button">
+                    type="button">
                    <i class="fa fa-minus"></i>
             </button>
           </span>
-          <input class="form-control ml-2 mr-2" id="quantity" max="100" min="1" name="quantity" type="text"
-                 [(ngModel)]="quantity">
+          <input [(ngModel)]="quantity" class="form-control ml-2 mr-2" id="quantity" max="100" min="1" name="quantity"
+                 type="text">
           <span class="input-group-btn">
               <button (click)="increaseQuantity()" class="btn btn-success" type="button">
                    <i class="fa fa-plus"></i>
@@ -33,10 +33,11 @@
       <div class="product-size-container">
         <h4>Product Variants: <span>{{selectedVariant.color}}</span></h4>
         <div class="btn-group mt-4">
-          <label *ngFor="let variant of product.variants"
-                 class="btn btn-outline-secondary mr-2" [ngClass]="{'border-success bg-dark text-white': selectedVariant == variant}"
-                 (click)="selectColor(variant)"
-                 btnCheckbox tabindex="0" role="button">{{variant.color}}</label>
+          <label (click)="selectColor(variant)"
+                 *ngFor="let variant of product.variants"
+                 [ngClass]="{'border-success bg-dark text-white': selectedVariant == variant}"
+                 btnCheckbox
+                 class="btn btn-outline-secondary mr-2" role="button" tabindex="0">{{variant.color}}</label>
         </div>
       </div>
 
@@ -44,11 +45,11 @@
         <h4>Product Size: <span></span>{{selectedVariantSize}}</h4>
 
         <div class="btn-group mt-4">
-          <label *ngFor="let size of selectedVariant.size"
-                 class="btn btn-outline-secondary mr-2"
+          <label (click)="selectVariantSize(size)"
+                 *ngFor="let size of selectedVariant.size"
                  [ngClass]="{'border-success bg-dark': selectedVariantSize == size}"
-                 (click)="selectVariantSize(size)"
-                 btnCheckbox tabindex="0" role="button">{{size}}</label>
+                 btnCheckbox
+                 class="btn btn-outline-secondary mr-2" role="button" tabindex="0">{{size}}</label>
         </div>
       </div>
       <div class="cart-button mt-4">

@@ -1,9 +1,9 @@
 import * as chai from 'chai';
-import chaiHttp = require('chai-http');
-import { describe, it, before, after } from 'mocha';
+import {after, before, describe, it} from 'mocha';
 
-import { app } from '../app';
+import {app} from '../app';
 import User from '../models/user';
+import chaiHttp = require('chai-http');
 
 process.env.NODE_ENV = 'test';
 

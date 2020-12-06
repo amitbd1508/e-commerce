@@ -4,10 +4,10 @@
           type="button">
     <i class="fa fa-minus"></i>
   </button>
-  <input class="form-control text-black" max="100" min="1" name="quantity"
-         type="number"
-         disabled
-         [(ngModel)]="cartItem.quantity">
+  <input [(ngModel)]="cartItem.quantity" class="form-control text-black" disabled max="100"
+         min="1"
+         name="quantity"
+         type="number">
   <button (click)="increment(cartItem)"
           class="btn btn-success ml-4"
           type="button">

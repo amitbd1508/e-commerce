@@ -12,6 +12,7 @@ export class ProductListComponent implements OnInit {
 
   products: Product[];
   isLoading = true;
+
   constructor(private service: ProductService, public toast: ToastComponent) {
   }
 

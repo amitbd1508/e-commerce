@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-toast',
@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./toast.component.scss']
 })
 export class ToastComponent {
-  @Input() message = { body: '', type: '' };
+  @Input() message = {body: '', type: ''};
 
   setMessage(body, type, time = 3000): void {
     this.message.body = body;

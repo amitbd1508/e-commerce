@@ -13,7 +13,8 @@ export class CartItemQuantityChangeComponent implements OnInit {
   @Output() quantityChange: EventEmitter<string> = new EventEmitter<string>();
 
 
-  constructor(private service: CartService) { }
+  constructor(private service: CartService) {
+  }
 
   ngOnInit(): void {
   }

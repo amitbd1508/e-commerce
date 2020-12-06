@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {AccountService} from './account/account.service';
-import {CurrentUser} from './shared/models/user';
-import {Observable} from 'rxjs';
 import {LoggerService} from './shared/service/logger.service';
 
 @Component({

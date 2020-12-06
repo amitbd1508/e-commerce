@@ -5,7 +5,7 @@ class ProductCtrl extends BaseCtrl {
   model = Product;
 
   insertMany = async (data) => {
-    try{
+    try {
       return await this.model.insertMany(data);
     } catch (err) {
       console.log(err.toLocaleString());
@@ -14,7 +14,7 @@ class ProductCtrl extends BaseCtrl {
   }
 
   deleteAll = async () => {
-    try{
+    try {
       return await this.model.deleteMany({});
     } catch (err) {
       console.log(err.toLocaleString());
@@ -23,7 +23,7 @@ class ProductCtrl extends BaseCtrl {
   }
 
   checkout = async (req, res) => {
-    try{
+    try {
       res.status(200).send(req.body);
     } catch (err) {
       console.log(err.toLocaleString());

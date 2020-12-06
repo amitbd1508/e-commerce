@@ -1,5 +1,3 @@
-import * as jwt from 'jsonwebtoken';
-
 import User from '../models/user';
 import BaseCtrl from './base';
 import * as Util from '../util/util';
@@ -28,8 +26,12 @@ class UserCtrl extends BaseCtrl {
 
   currentUser = (req, res) => {
     this.model.findOne({email: req.user.email}, (err, doc) => {
-      if (err) { return  res.sendStatus(500); }
-      if (!doc) { return res.status(401).send('Please log in again.'); }
+      if (err) {
+        return res.sendStatus(500);
+      }
+      if (!doc) {
+        return res.status(401).send('Please log in again.');
+      }
 
       res.json(Util.formatProfile(doc.toJSON()));
     });

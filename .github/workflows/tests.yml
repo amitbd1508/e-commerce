@@ -18,12 +18,12 @@ jobs:
       matrix:
         node-version: [14.x]
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm run test -- --watch=false --progress=false --browsers=ChromeHeadless
-    - run: npm run e2e -- --protractor-config='e2e/protractor.ci.conf.js'
-    - run: npm run testbe
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm run test -- --watch=false --progress=false --browsers=ChromeHeadless
+      - run: npm run e2e -- --protractor-config='e2e/protractor.ci.conf.js'
+      - run: npm run testbe
