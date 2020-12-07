@@ -36,7 +36,6 @@ class UserCtrl extends BaseCtrl {
       res.json(Util.formatProfile(doc.toJSON()));
     });
   }
-
 }
 
 export default UserCtrl;
