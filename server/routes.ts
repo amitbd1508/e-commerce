@@ -17,10 +17,10 @@ function setRoutes(app): void {
   // Products
   router.route('/product').get(auth.isJWTValid, productCtrl.getAll);
   router.route('/product/:id').get(auth.isJWTValid, productCtrl.get);
-  router.route('/product/checkout').post(auth.isJWTValid, productCtrl.checkout);
+  router.route('/checkout').post(auth.isJWTValid, productCtrl.checkout);
 
   // Apply the routes to our application with the prefix /api
-  app.use('/api', router);
+  app.use('/api/v1', router);
 
 }
 

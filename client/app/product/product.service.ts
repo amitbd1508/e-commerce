@@ -13,14 +13,14 @@ export class ProductService {
   }
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>('/api/product');
+    return this.http.get<Product[]>('/api/v1/product');
   }
 
   getProductById(id: string): Observable<Product> {
-    return this.http.get<Product>(`/api/product/${id}`);
+    return this.http.get<Product>(`/api/v1/product/${id}`);
   }
 
   checkout(cart: CartItem[]): Observable<CartItem[]> {
-    return this.http.post<CartItem[]>(`/api/product/checkout`, cart);
+    return this.http.post<CartItem[]>(`/api/v1/checkout`, cart);
   }
 }
