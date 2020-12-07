@@ -4,6 +4,7 @@ import {CartItem} from '../../shared/models/cart';
 import {ProductService} from '../../product/product.service';
 import {Router} from '@angular/router';
 import {ToastComponent} from '../../shared/components/toast/toast.component';
+import {LoggerService} from '../../shared/service/logger.service';
 
 @Component({
   selector: 'app-cart',
@@ -17,6 +18,7 @@ export class CartComponent implements OnInit {
 
   constructor(private service: CartService,
               private router: Router,
+              private logger: LoggerService,
               public toast: ToastComponent,
               private productService: ProductService) {
   }
@@ -34,6 +36,9 @@ export class CartComponent implements OnInit {
     this.productService.checkout(this.service.getCartItems()).subscribe(it => {
       this.service.clearCart();
       this.router.navigate(['/product']);
+    }, error => {
+      this.toast.setMessage(`${error.error}`, 'danger');
+      this.logger.logError('LoginComponent', error.error);
     });
   }
 
