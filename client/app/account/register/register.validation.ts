@@ -4,7 +4,7 @@ export const validationConfig = {
   name: ['', [Validators.required, Validators.min(4), Validators.max(100)]],
   email: ['', [Validators.required, Validators.email]],
   password: ['', [Validators.required, Validators.minLength(6)]],
-  confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
+  confirmation: ['', [Validators.required, Validators.minLength(6)]]
 };
 
 export function mustMatch(controlName: string, matchingControlName: string): any {

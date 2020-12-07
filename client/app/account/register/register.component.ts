@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
 
   buildForm(): void {
     this.form = this.fb.group(validationConfig, {
-      validators: mustMatch('password', 'confirmPassword')
+      validators: mustMatch('password', 'confirmation')
     });
   }
 
