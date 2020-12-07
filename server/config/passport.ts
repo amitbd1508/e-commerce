@@ -27,34 +27,41 @@ module.exports = (passport: any) => {
    * by default, if there was no name, it would just be called 'local'
    */
 
-  passport.use('local-signup', new LocalStrategy({
-      usernameField: 'email',
-      passwordField: 'password',
-      passReqToCallback: true,
-    },
-    (req: any, email: any, password: any, done: any) => {
-      process.nextTick(() => {
-        User.findOne({email}, (err: any, user: any) => {
-          if (err) {
-            return done(err);
-          }
-          if (user) {
-            return done(null, false, {message: 'User with this email already exist!'});
-          } else {
-            const newUser = new User();
-            newUser.name = req.body.name;
-            newUser.email = email;
-            newUser.password = newUser.generateHash(password);
-            newUser.save((newUserSavingError: any) => {
-              if (newUserSavingError) {
-                throw newUserSavingError;
-              }
-              return done(null, newUser);
-            });
-          }
+  passport.use(
+    'local-signup',
+    new LocalStrategy(
+      {
+        usernameField: 'email',
+        passwordField: 'password',
+        passReqToCallback: true,
+      },
+      (req: any, email: any, password: any, done: any) => {
+        process.nextTick(() => {
+          User.findOne({ email }, (err: any, user: any) => {
+            if (err) {
+              return done(err);
+            }
+            if (user) {
+              return done(null, false, {
+                message: 'User with this email already exist!',
+              });
+            } else {
+              const newUser = new User();
+              newUser.name = req.body.name;
+              newUser.email = email;
+              newUser.password = newUser.generateHash(password);
+              newUser.save((newUserSavingError: any) => {
+                if (newUserSavingError) {
+                  throw newUserSavingError;
+                }
+                return done(null, newUser);
+              });
+            }
+          });
         });
-      });
-    }));
+      }
+    )
+  );
 
   /*
    * LOCAL LOGIN
@@ -62,50 +69,67 @@ module.exports = (passport: any) => {
    * by default, if there was no name, it would just be called 'local'
    */
 
-  passport.use('local-login', new LocalStrategy({
-      usernameField: 'email',
-      passwordField: 'password',
-      passReqToCallback: true,
-    },
-    (req: any, email: any, password: any, done: any) => { // callback with email and password from our form
-      User.findOne({email}, (err: any, user: any) => {
-        if (err) {
-          return done(err);
-        }
+  passport.use(
+    'local-login',
+    new LocalStrategy(
+      {
+        usernameField: 'email',
+        passwordField: 'password',
+        passReqToCallback: true,
+      },
+      (req: any, email: any, password: any, done: any) => {
+        // callback with email and password from our form
+        User.findOne({ email }, (err: any, user: any) => {
+          if (err) {
+            return done(err);
+          }
 
-        if (!user) {
-          return done(null, false, console.error('Passport: User not found.'));
-        }
+          if (!user) {
+            return done(
+              null,
+              false,
+              console.error('Passport: User not found.')
+            );
+          }
 
-        if (!user.validPassword(password)) {
-          return done(null, false, console.error('Passport: Invalid password.'));
-        }
+          if (!user.validPassword(password)) {
+            return done(
+              null,
+              false,
+              console.error('Passport: Invalid password.')
+            );
+          }
 
-        return done(null, user);
-      });
-
-    }));
+          return done(null, user);
+        });
+      }
+    )
+  );
 
   /*
    * JWT STRATEGY
    * to verify the validity of json web token
    */
 
-  passport.use('jwt', new JWTStrategy({
-      jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-      secretOrKey: String(process.env.SECRET_TOKEN),
-    },
-    (jwtPayload: any, done: any, req: any) => {
-      User.findOne({_id: jwtPayload._id}, (err: any, user: any) => {
-        if (err) {
-          return done(err, false);
-        }
-        if (user) {
-          return done(null, user);
-        } else {
-          return done(null, false);
-        }
-      });
-    },
-  ));
+  passport.use(
+    'jwt',
+    new JWTStrategy(
+      {
+        jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+        secretOrKey: String(process.env.SECRET_TOKEN),
+      },
+      (jwtPayload: any, done: any, req: any) => {
+        User.findOne({ _id: jwtPayload._id }, (err: any, user: any) => {
+          if (err) {
+            return done(err, false);
+          }
+          if (user) {
+            return done(null, user);
+          } else {
+            return done(null, false);
+          }
+        });
+      }
+    )
+  );
 };

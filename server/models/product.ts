@@ -4,16 +4,16 @@ const variantSchema = new mongoose.Schema({
   color: String,
   size: {
     type: [String],
-    enum: ['small', 'medium', 'large', 'extra-large']
+    enum: ['small', 'medium', 'large', 'extra-large'],
   },
   quantity: {
     type: Number,
     required: true,
     validate: {
       validator: Number.isInteger,
-      message: '{VALUE} is not an integer value'
-    }
-  }
+      message: '{VALUE} is not an integer value',
+    },
+  },
 });
 
 const productSchema = new mongoose.Schema({
@@ -23,23 +23,24 @@ const productSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: Number.isInteger,
-      message: '{VALUE} is not an integer value'
-    }
+      message: '{VALUE} is not an integer value',
+    },
   },
   name: {
     type: String,
-    required: true
+    required: true,
   },
   price: {
     type: Number,
-    required: true
+    required: true,
   },
   available: {
     type: Boolean,
-    required: true
+    required: true,
   },
-  variants: [variantSchema]
-}).set('autoIndex', true)
+  variants: [variantSchema],
+})
+  .set('autoIndex', true)
   .set('minimize', false)
   .set('timestamps', true);
 

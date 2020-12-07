@@ -4,14 +4,15 @@ import * as mongoose from 'mongoose';
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
-  email: {type: String, unique: true, lowercase: true, trim: true},
+  email: { type: String, unique: true, lowercase: true, trim: true },
   password: {
     type: String,
-    required: true
+    required: true,
   },
-}).set('autoIndex', true)
+})
+  .set('autoIndex', true)
   .set('minimize', false)
   .set('timestamps', true);
 
@@ -28,7 +29,7 @@ userSchema.set('toJSON', {
   transform: (doc, ret, options) => {
     delete ret.password;
     return ret;
-  }
+  },
 });
 
 const User = mongoose.model('User', userSchema);

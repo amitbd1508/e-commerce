@@ -7,22 +7,15 @@ export const products = [
     variants: [
       {
         color: 'white',
-        size: [
-          'large',
-          'medium',
-          'extra-large'
-        ],
-        quantity: 3
+        size: ['large', 'medium', 'extra-large'],
+        quantity: 3,
       },
       {
         color: 'red',
-        size: [
-          'small',
-          'medium'
-        ],
-        quantity: 7
-      }
-    ]
+        size: ['small', 'medium'],
+        quantity: 7,
+      },
+    ],
   },
   {
     id: 2,
@@ -32,21 +25,15 @@ export const products = [
     variants: [
       {
         color: 'blue',
-        size: [
-          'large',
-          'extra-large'
-        ],
-        quantity: 3
+        size: ['large', 'extra-large'],
+        quantity: 3,
       },
       {
         color: 'red',
-        size: [
-          'small',
-          'medium'
-        ],
-        quantity: 7
-      }
-    ]
+        size: ['small', 'medium'],
+        quantity: 7,
+      },
+    ],
   },
   {
     id: 3,
@@ -56,21 +43,15 @@ export const products = [
     variants: [
       {
         color: 'white',
-        size: [
-          'medium',
-          'extra-large'
-        ],
-        quantity: 3
+        size: ['medium', 'extra-large'],
+        quantity: 3,
       },
       {
         color: 'red',
-        size: [
-          'small',
-          'medium'
-        ],
-        quantity: 7
-      }
-    ]
+        size: ['small', 'medium'],
+        quantity: 7,
+      },
+    ],
   },
   {
     id: 4,
@@ -80,22 +61,15 @@ export const products = [
     variants: [
       {
         color: 'white',
-        size: [
-          'large',
-          'medium',
-          'extra-large'
-        ],
-        quantity: 3
+        size: ['large', 'medium', 'extra-large'],
+        quantity: 3,
       },
       {
         color: 'black',
-        size: [
-          'small',
-          'medium'
-        ],
-        quantity: 17
-      }
-    ]
+        size: ['small', 'medium'],
+        quantity: 17,
+      },
+    ],
   },
   {
     id: 5,
@@ -105,22 +79,15 @@ export const products = [
     variants: [
       {
         color: 'white',
-        size: [
-          'large',
-          'medium',
-          'extra-large'
-        ],
-        quantity: 9
+        size: ['large', 'medium', 'extra-large'],
+        quantity: 9,
       },
       {
         color: 'red',
-        size: [
-          'small',
-          'medium'
-        ],
-        quantity: 2
-      }
-    ]
+        size: ['small', 'medium'],
+        quantity: 2,
+      },
+    ],
   },
   {
     id: 6,
@@ -130,22 +97,15 @@ export const products = [
     variants: [
       {
         color: 'white',
-        size: [
-          'large',
-          'medium',
-          'extra-large'
-        ],
-        quantity: 3
+        size: ['large', 'medium', 'extra-large'],
+        quantity: 3,
       },
       {
         color: 'red',
-        size: [
-          'small',
-          'medium'
-        ],
-        quantity: 7
-      }
-    ]
+        size: ['small', 'medium'],
+        quantity: 7,
+      },
+    ],
   },
   {
     id: 7,
@@ -155,22 +115,15 @@ export const products = [
     variants: [
       {
         color: 'white',
-        size: [
-          'large',
-          'medium',
-          'extra-large'
-        ],
-        quantity: 3
+        size: ['large', 'medium', 'extra-large'],
+        quantity: 3,
       },
       {
         color: 'purple',
-        size: [
-          'small',
-          'medium'
-        ],
-        quantity: 7
-      }
-    ]
+        size: ['small', 'medium'],
+        quantity: 7,
+      },
+    ],
   },
   {
     id: 8,
@@ -180,22 +133,15 @@ export const products = [
     variants: [
       {
         color: 'white',
-        size: [
-          'large',
-          'medium',
-          'extra-large'
-        ],
-        quantity: 3
+        size: ['large', 'medium', 'extra-large'],
+        quantity: 3,
       },
       {
         color: 'red',
-        size: [
-          'small',
-          'medium'
-        ],
-        quantity: 7
-      }
-    ]
+        size: ['small', 'medium'],
+        quantity: 7,
+      },
+    ],
   },
   {
     id: 9,
@@ -205,22 +151,15 @@ export const products = [
     variants: [
       {
         color: 'white',
-        size: [
-          'large',
-          'medium',
-          'extra-large'
-        ],
-        quantity: 3
+        size: ['large', 'medium', 'extra-large'],
+        quantity: 3,
       },
       {
         color: 'red',
-        size: [
-          'small',
-          'medium'
-        ],
-        quantity: 7
-      }
-    ]
+        size: ['small', 'medium'],
+        quantity: 7,
+      },
+    ],
   },
   {
     id: 10,
@@ -230,30 +169,19 @@ export const products = [
     variants: [
       {
         color: 'black',
-        size: [
-          'large',
-          'medium',
-          'extra-large'
-        ],
-        quantity: 3
+        size: ['large', 'medium', 'extra-large'],
+        quantity: 3,
       },
       {
         color: 'white',
-        size: [
-          'large',
-          'medium',
-          'extra-large'
-        ],
-        quantity: 3
+        size: ['large', 'medium', 'extra-large'],
+        quantity: 3,
       },
       {
         color: 'red',
-        size: [
-          'small',
-          'medium'
-        ],
-        quantity: 7
-      }
-    ]
-  }
+        size: ['small', 'medium'],
+        quantity: 7,
+      },
+    ],
+  },
 ];

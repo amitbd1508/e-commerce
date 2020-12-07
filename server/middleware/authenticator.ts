@@ -3,7 +3,7 @@ import * as jwt from 'jsonwebtoken';
 import * as Util from '../util/util';
 
 export function isJWTValid(req: any, res: any, next: any): any {
-  passport.authenticate('jwt', {session: false})(req, res, next);
+  passport.authenticate('jwt', { session: false })(req, res, next);
 }
 
 export function register(req, res, next): any {

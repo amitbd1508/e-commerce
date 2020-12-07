@@ -15,17 +15,16 @@ class ProductCtrl extends BaseCtrl {
 
       // Calculate cart items price
       let totalPrice = 0;
-      cartItems.map(cartItem => {
+      cartItems.map((cartItem) => {
         totalPrice += cartItem.productPrice;
       });
 
-      res.json({totalPrice});
-
+      res.json({ totalPrice });
     } catch (error) {
       console.log(error.toLocaleString());
       res.sendStatus(500).json(error.toString());
     }
-  }
+  };
 
   // For seeding and testing
   insertMany = async (data) => {
@@ -35,7 +34,7 @@ class ProductCtrl extends BaseCtrl {
       console.log(err.toLocaleString());
       return err;
     }
-  }
+  };
 
   // For seeding and testing
   deleteAll = async () => {
@@ -45,7 +44,7 @@ class ProductCtrl extends BaseCtrl {
       console.log(err.toLocaleString());
       return err;
     }
-  }
+  };
 }
 
 export default ProductCtrl;
