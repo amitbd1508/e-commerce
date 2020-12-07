@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CartItem } from '../shared/models/cart';
+import { CartItem, CheckOutResponse } from '../shared/models/cart';
 import { MessengerService } from '../shared/service/messenger.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -85,7 +85,7 @@ export class CartService {
     this.messengerService.updateCart();
   }
 
-  checkout(cart: CartItem[]): Observable<any> {
-    return this.http.post<any>(`/api/v1/checkout`, cart);
+  checkout(cart: CartItem[]): Observable<CheckOutResponse> {
+    return this.http.post<CheckOutResponse>(`/api/v1/checkout`, cart);
   }
 }

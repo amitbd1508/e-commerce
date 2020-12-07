@@ -8,3 +8,7 @@ export interface CartItem {
   quantity: number;
   numberOfAvailableProduct: number;
 }
+
+export interface CheckOutResponse {
+  totalPrice: string;
+}
