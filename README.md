@@ -1,20 +1,21 @@
-# E Commerce
-E Commerce is a project build with the latest Angular using a real backend and database. Whole stack is in TypeScript, from frontend to backend, giving you the advantage to code in one single language throughout the all stack.
+# Full-stack Web Developer Assignment 
+This is a assignment of a simple shopping cart functionality for an e-commerce website.
 
-[Go to Live Project](https://dev-cefalo-ecommerce.herokuapp.com/)
+
+[Live Project](https://dev-cefalo-ecommerce.herokuapp.com/)
 
 This project uses the [MEAN stack](https://en.wikipedia.org/wiki/MEAN_(solution_stack)):
-* [**M**ongoose.js](http://www.mongoosejs.com) ([MongoDB](https://www.mongodb.com)): database
-* [**E**xpress.js](http://expressjs.com): backend framework
-* [**A**ngular 2+](https://angular.io): frontend framework
-* [**N**ode.js](https://nodejs.org): runtime environment
+* [**M**ongoose.js](http://www.mongoosejs.com) ([MongoDB](https://www.mongodb.com)): Database
+* [**E**xpress.js](http://expressjs.com): Backend framework
+* [**A**ngular](https://angular.io): Frontend framework
+* [**N**ode.js](https://nodejs.org): Runtime environment
 
 Other tools and technologies used:
-* [Angular CLI](https://cli.angular.io): frontend scaffolding
-* [Bootstrap](http://www.getbootstrap.com): layout and styles
-* [Font Awesome](http://fontawesome.com): icons
-* [JSON Web Token](https://jwt.io): user authentication
-* [Angular 2 JWT](https://github.com/auth0/angular2-jwt): JWT helper for Angular 2+
+* [Angular CLI](https://cli.angular.io): Frontend scaffolding
+* [Bootstrap](http://www.getbootstrap.com): Layout and styles
+* [Font Awesome](http://fontawesome.com): Icons
+* [JSON Web Token](https://jwt.io): User authentication
+* [Angular JWT](https://github.com/auth0/angular2-jwt): JWT helper for Angular
 * [Bcrypt.js](https://github.com/dcodeIO/bcrypt.js): password encryption
 
 ## Prerequisites
@@ -22,11 +23,7 @@ Other tools and technologies used:
 2. Install Angular CLI(11.0.3): `npm i -g @angular/cli`
 3. From project root folder install all the dependencies: `npm i`
 
-## Seed
-`npm run seed`: for seeding data
-
-
-## Run
+## Developing
 ### Development mode
 `npm run dev`: [concurrently](https://github.com/kimmobrunfeldt/concurrently) execute MongoDB, Angular build, TypeScript compiler and Express server.
 
@@ -39,14 +36,21 @@ A window will automatically open at [localhost:4200](http://localhost:4200). Ang
 1. `docker-compose up`
 2. Go to [localhost:3000](http://localhost:3000)
 
+## Database Seeding
+`npm run seed`: for seeding data
 
-## Deploying to Heroku
+### Deployment to Heroku
+<img src="https://upload.wikimedia.org/wikipedia/en/a/a9/Heroku_logo.png" width="200">
 
-```
-$ heroku create
-$ git push heroku main
-$ heroku open
-```
+- Download and install [Heroku Toolbelt](https://toolbelt.heroku.com/)
+- In a terminal, run `heroku login` and enter your Heroku credentials
+- From *your app* directory run `heroku create`
+- Use the command `heroku config:set KEY=val` to set the different environment variables (KEY=val) for your application 
+(i.e.  `heroku config:set BASE_URL=[heroku App Name].herokuapp.com` or `heroku config:set MONGODB_URI=mongodb://dbuser:<password>@cluster0-shard-00-00-sdf32.mongodb.net:27017,cluster0-shard-00-01-sdf32.mongodb.net:27017/<dbname>?ssl=true&retryWrites=true&w=majority` (see Hosted MongoDB Atlas below), etc.)  Make sure to set the environment variables for SENDGRID_USER, SENDGRID_PASSWORD, and any other API that you are using as well.
+- Lastly, do `git push heroku master`.
+
+Please note that you may also use the [Herko Dashboard](https://dashboard.heroku.com) to set or modify the configurations for your application.
+
 or
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
@@ -63,7 +67,7 @@ or
 9. You can now visit the public IP of your AWS EC2 followed by the port, eg: `12.34.56.78:3000`
 10. Tip: use [pm2](https://pm2.keymetrics.io/) to run the app instead of `npm start`, eg: `pm2 start dist/server/app.js`
 
-
+---
 ## Running tests
 Run `ng test` to execute the frontend unit tests via [Karma](https://karma-runner.github.io).
 
