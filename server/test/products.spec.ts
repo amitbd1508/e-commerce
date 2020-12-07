@@ -1,17 +1,21 @@
 import * as chai from 'chai';
-import {after, before, describe, it} from 'mocha';
+import { after, before, describe, it } from 'mocha';
 
 // Setting environment to test
 process.env.NODE_ENV = 'test';
 
-import {app} from '../app';
+import { app } from '../app';
 import User from '../models/user';
 import chaiHttp = require('chai-http');
 import Product from '../models/product';
 
 chai.use(chaiHttp).should();
 
-const testUser1 = {name: 'Amit Ghosh', email: 'test@test.com', password: 'strong_password'};
+const testUser1 = {
+  name: 'Amit Ghosh',
+  email: 'test@test.com',
+  password: 'strong_password',
+};
 const products = [
   {
     id: 1,
@@ -21,22 +25,15 @@ const products = [
     variants: [
       {
         color: 'white',
-        size: [
-          'large',
-          'medium',
-          'extra-large'
-        ],
-        quantity: 3
+        size: ['large', 'medium', 'extra-large'],
+        quantity: 3,
       },
       {
         color: 'red',
-        size: [
-          'small',
-          'medium'
-        ],
-        quantity: 7
-      }
-    ]
+        size: ['small', 'medium'],
+        quantity: 7,
+      },
+    ],
   },
   {
     id: 2,
@@ -46,31 +43,25 @@ const products = [
     variants: [
       {
         color: 'blue',
-        size: [
-          'large',
-          'extra-large'
-        ],
-        quantity: 3
+        size: ['large', 'extra-large'],
+        quantity: 3,
       },
       {
         color: 'red',
-        size: [
-          'small',
-          'medium'
-        ],
-        quantity: 7
-      }
-    ]
-  }
+        size: ['small', 'medium'],
+        quantity: 7,
+      },
+    ],
+  },
 ];
 
 describe('Products API', () => {
-
   let token = '';
 
   before((done) => {
     // Register a user for getting token
-    chai.request(app)
+    chai
+      .request(app)
       .post('/api/v1/register')
       .send(testUser1)
       .end((err, res) => {
@@ -83,19 +74,16 @@ describe('Products API', () => {
 
   after(() => {
     // Remove all user test data for next use
-    User.deleteMany({}, err => {
-    });
-    Product.deleteMany({}, err => {
-    });
+    User.deleteMany({}, (err) => {});
+    Product.deleteMany({}, (err) => {});
   });
 
-
   describe('Backend tests for products', () => {
-
-    it('should get all products', done => {
-      chai.request(app)
+    it('should get all products', (done) => {
+      chai
+        .request(app)
         .get('/api/v1/product')
-        .set({Authorization: `Bearer ${token}`})
+        .set({ Authorization: `Bearer ${token}` })
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('array');
@@ -104,8 +92,9 @@ describe('Products API', () => {
         });
     });
 
-    it('should not get products for missing authentication', done => {
-      chai.request(app)
+    it('should not get products for missing authentication', (done) => {
+      chai
+        .request(app)
         .get('/api/v1/product')
         .end((err, res) => {
           res.should.have.status(401);
@@ -113,10 +102,11 @@ describe('Products API', () => {
         });
     });
 
-    it('should get a product', done => {
-      chai.request(app)
+    it('should get a product', (done) => {
+      chai
+        .request(app)
         .get('/api/v1/product/1')
-        .set({Authorization: `Bearer ${token}`})
+        .set({ Authorization: `Bearer ${token}` })
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -128,15 +118,14 @@ describe('Products API', () => {
     });
   });
 
-  it('should not get a product', done => {
-    chai.request(app)
+  it('should not get a product', (done) => {
+    chai
+      .request(app)
       .get('/api/v1/product/10')
-      .set({Authorization: `Bearer ${token}`})
+      .set({ Authorization: `Bearer ${token}` })
       .end((err, res) => {
         res.should.have.status(400);
         done();
       });
   });
 });
-
-
