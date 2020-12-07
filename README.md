@@ -23,6 +23,10 @@ Other tools and technologies used:
 2. Install Angular CLI(11.0.3): `npm i -g @angular/cli`
 3. From project root folder install all the dependencies: `npm i`
 
+## Seed
+`npm run seed`: for seeding data
+
+
 ## Run
 ### Development mode
 `npm run dev`: [concurrently](https://github.com/kimmobrunfeldt/concurrently) execute MongoDB, Angular build, TypeScript compiler and Express server.
@@ -52,9 +56,8 @@ A window will automatically open at [localhost:4200](http://localhost:4200). Ang
 ## Running tests
 Run `ng test` to execute the frontend unit tests via [Karma](https://karma-runner.github.io).
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
 Run `npm run testbe` to execute the backend tests via [Mocha](https://mochajs.org/) (it requires `mongod` already running).
+
 
 ## Running linters
 Run `npm run lint` to execute [TS linting](https://github.com/palantir/tslint), [HTML linting](https://github.com/htmlhint/HTMLHint) and [SASS linting](https://github.com/sasstools/sass-lint).
