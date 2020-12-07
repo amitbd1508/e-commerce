@@ -73,15 +73,6 @@
         "always"
       ]
     },
-    "space-before-function-paren": {
-      "options": {
-        "anonymous": "never",
-        "asyncArrow": "always",
-        "constructor": "never",
-        "method": "never",
-        "named": "never"
-      }
-    },
     "typedef": [
       true,
       "call-signature"
