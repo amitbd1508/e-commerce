@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {formErrors, validationConfig, validationMessages} from './login.validation';
+import {validationConfig} from './login.validation';
 import {AccountService} from '../account.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import Utils from '../../shared/helpers/helper-methods';
 import {LoggerService} from '../../shared/service/logger.service';
 import {ToastComponent} from '../../shared/components/toast/toast.component';
 
@@ -14,8 +13,7 @@ import {ToastComponent} from '../../shared/components/toast/toast.component';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
-  formErrors = formErrors;
-  validationMessages = validationMessages;
+  submitted = false;
 
   returnUrl: string;
 
@@ -28,18 +26,27 @@ export class LoginComponent implements OnInit {
     this.buildForm();
   }
 
+  // convenience getter for easy access to form fields
+  get f(): any {
+    return this.form.controls;
+  }
+
   ngOnInit(): void {
     this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl || '/';
   }
 
   buildForm(): void {
     this.form = this.fb.group(validationConfig);
-
-    this.form.valueChanges.subscribe(() => Utils.onFormValueChanged(this.form, this.validationMessages, this.formErrors));
-    // Utils.onFormValueChanged(this.form, this.validationMessages, this.formErrors);
   }
 
   onLogin(): void {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.form.invalid) {
+      return;
+    }
+
     this.service.login(this.form.value).subscribe(() => {
       this.router.navigateByUrl(this.returnUrl);
     }, error => {
