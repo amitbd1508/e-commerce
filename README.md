@@ -39,7 +39,19 @@ A window will automatically open at [localhost:4200](http://localhost:4200). Ang
 1. `docker-compose up`
 2. Go to [localhost:3000](http://localhost:3000)
 
-### AWS EC2
+
+## Deploying to Heroku
+
+```
+$ heroku create
+$ git push heroku main
+$ heroku open
+```
+or
+
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
+### Deploying to AWS EC2
 1. Create a EC2 Linux machine on AWS
 2. Edit the EC2 Security Group and add TCP port `3000` as an Inbound rule for Source `0.0.0.0/0`
 3. Clone this repo into the EC2 machine
