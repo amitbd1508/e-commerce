@@ -1,14 +1,13 @@
-import {Injectable} from '@angular/core';
-import {Observable, Subject} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MessengerService {
   cartSubject = new Subject();
 
-  constructor() {
-  }
+  constructor() {}
 
   updateCart(): void {
     this.cartSubject.next('update-cart');

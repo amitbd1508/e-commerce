@@ -21,9 +21,7 @@
           <td>{{cartItem.variantColor}}</td>
           <td>{{cartItem.variantSize}}</td>
           <td>
-            <app-cart-item-quantity-change
-              (quantityChange)="onChangeQuantity($event)"
-              [cartItem]="cartItem">
+            <app-cart-item-quantity-change (quantityChange)="onChangeQuantity($event)" [cartItem]="cartItem">
             </app-cart-item-quantity-change>
           </td>
           <td>
@@ -31,8 +29,7 @@
           </td>
           <td>
             <span>
-              <button (click)="removeItem(cartItem)"
-                      class="btn btn-danger btn-number" type="button">
+              <button (click)="removeItem(cartItem)" class="btn btn-danger btn-number" type="button">
                 <i class="fa fa-trash"></i>
               </button>
             </span>
@@ -53,7 +50,8 @@
         </tr>
       </table>
       <div>
-        <button [disabled]="cartItems.length < 1" (click)="checkOut()" class="btn btn-warning pull-right btn-lg mt-4">Checkout</button>
+        <button [disabled]="cartItems.length < 1" (click)="checkOut()"
+          class="btn btn-warning pull-right btn-lg mt-4">Checkout</button>
         <button routerLink="/" class="btn btn-success pull-left btn-lg mt-4">Continue Shopping</button>
       </div>
     </div>

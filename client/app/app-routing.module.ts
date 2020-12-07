@@ -1,28 +1,32 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {AuthGuardService as AuthGuard} from '../app/core/auth/auth-guard.service';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthGuardService as AuthGuard } from '../app/core/auth/auth-guard.service';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/product', pathMatch: 'full'},
+  { path: '', redirectTo: '/product', pathMatch: 'full' },
   {
-    path: 'product', loadChildren: () => import('./product/product.module')
-      .then(module => module.ProductModule),
-    canActivate: [AuthGuard]
+    path: 'product',
+    loadChildren: () =>
+      import('./product/product.module').then((module) => module.ProductModule),
+    canActivate: [AuthGuard],
   },
   {
-    path: 'cart', loadChildren: () => import('./shopping-cart/shopping-cart.module')
-      .then(module => module.ShoppingCartModule)
+    path: 'cart',
+    loadChildren: () =>
+      import('./shopping-cart/shopping-cart.module').then(
+        (module) => module.ShoppingCartModule),
+    canActivate: [AuthGuard],
   },
   {
-    path: 'account', loadChildren: () => import('./account/account.module')
-      .then(module => module.AccountModule)
+    path: 'account',
+    loadChildren: () =>
+      import('./account/account.module').then((module) => module.AccountModule),
   },
-  {path: '**', redirectTo: 'not-found', pathMatch: 'full'}
+  { path: '**', redirectTo: 'not-found', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

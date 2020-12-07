@@ -1,27 +1,27 @@
-import {Component, OnInit} from '@angular/core';
-import {CartService} from '../cart.service';
-import {CartItem} from '../../shared/models/cart';
-import {ProductService} from '../../product/product.service';
-import {Router} from '@angular/router';
-import {ToastComponent} from '../../shared/components/toast/toast.component';
-import {LoggerService} from '../../shared/service/logger.service';
+import { Component, OnInit } from '@angular/core';
+import { CartService } from '../cart.service';
+import { CartItem } from '../../shared/models/cart';
+import { ProductService } from '../../product/product.service';
+import { Router } from '@angular/router';
+import { ToastComponent } from '../../shared/components/toast/toast.component';
+import { LoggerService } from '../../shared/service/logger.service';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss']
+  styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
-
   cartItems: CartItem[];
   cartTotal: number;
 
-  constructor(private service: CartService,
-              private router: Router,
-              private logger: LoggerService,
-              public toast: ToastComponent,
-              private productService: ProductService) {
-  }
+  constructor(
+    private service: CartService,
+    private router: Router,
+    private logger: LoggerService,
+    public toast: ToastComponent,
+    private productService: ProductService
+  ) {}
 
   ngOnInit(): void {
     this.loadCart();
@@ -33,13 +33,16 @@ export class CartComponent implements OnInit {
   }
 
   checkOut(): void {
-    this.productService.checkout(this.service.getCartItems()).subscribe(it => {
-      this.service.clearCart();
-      this.router.navigate(['/product']);
-    }, error => {
-      this.toast.setMessage(`${error.error}`, 'danger');
-      this.logger.logError('LoginComponent', error.error);
-    });
+    this.productService.checkout(this.service.getCartItems()).subscribe(
+      (it) => {
+        this.service.clearCart();
+        this.router.navigate(['/product']);
+      },
+      (error) => {
+        this.toast.setMessage(`${error.error}`, 'danger');
+        this.logger.logError('LoginComponent', error.error);
+      }
+    );
   }
 
   removeItem(cartItem: CartItem): void {
@@ -51,7 +54,10 @@ export class CartComponent implements OnInit {
     if ($event !== 'failed') {
       this.loadCart();
     } else {
-      this.toast.setMessage('Cannot increase the quantity of this product!', 'danger');
+      this.toast.setMessage(
+        'Cannot increase the quantity of this product!',
+        'danger'
+      );
     }
   }
 }

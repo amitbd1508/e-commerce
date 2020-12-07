@@ -1,22 +1,20 @@
-import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
-import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {LoginComponent} from './login.component';
-import {AccountService} from '../account.service';
-import {ToastComponent} from '../../shared/components/toast/toast.component';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LoginComponent } from './login.component';
+import { AccountService } from '../account.service';
+import { ToastComponent } from '../../shared/components/toast/toast.component';
 
-class AccountServiceMock {
-}
+class AccountServiceMock {}
 
-class RouterMock {
-}
+class RouterMock {}
 
 class ActivatedRouteMock {
   public snapshot = {
     queryParams: {
-      returnUrl: '/'
-    }
+      returnUrl: '/',
+    },
   };
 }
 
@@ -24,20 +22,21 @@ describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [FormsModule, ReactiveFormsModule],
-      declarations: [LoginComponent],
-      providers: [
-        FormBuilder,
-        ToastComponent,
-        {provide: AccountService, useClass: AccountServiceMock},
-        {provide: Router, useClass: RouterMock},
-        {provide: ActivatedRoute, useClass: ActivatedRouteMock}
-      ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [FormsModule, ReactiveFormsModule],
+        declarations: [LoginComponent],
+        providers: [
+          FormBuilder,
+          ToastComponent,
+          { provide: AccountService, useClass: AccountServiceMock },
+          { provide: Router, useClass: RouterMock },
+          { provide: ActivatedRoute, useClass: ActivatedRouteMock },
+        ],
+      }).compileComponents();
     })
-      .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginComponent);
@@ -55,7 +54,9 @@ describe('LoginComponent', () => {
   });
 
   it('should display the username and password inputs', () => {
-    const [inputUsername, inputPassword] = fixture.debugElement.queryAll(By.css('input'));
+    const [inputUsername, inputPassword] = fixture.debugElement.queryAll(
+      By.css('input')
+    );
     expect(inputUsername.nativeElement).toBeTruthy();
     expect(inputPassword.nativeElement).toBeTruthy();
     expect(inputUsername.nativeElement.value).toBeFalsy();
@@ -67,5 +68,4 @@ describe('LoginComponent', () => {
     expect(el).toBeTruthy();
     expect(el.textContent).toContain('Login');
   });
-
 });

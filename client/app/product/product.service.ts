@@ -1,16 +1,14 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {Product} from '../shared/models/product';
-import {CartItem} from '../shared/models/cart';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Product } from '../shared/models/product';
+import { CartItem } from '../shared/models/cart';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>('/api/v1/product');
@@ -21,6 +19,6 @@ export class ProductService {
   }
 
   checkout(cart: CartItem[]): Observable<CartItem[]> {
-    return this.http.post<CartItem[]>(`/api/v1/checkout`, cart);
+    return this.http.post<CartItem[]>(`/api/v1/product/checkout`, cart);
   }
 }

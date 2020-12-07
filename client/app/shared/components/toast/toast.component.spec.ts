@@ -1,18 +1,19 @@
-import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
-import {ToastComponent} from './toast.component';
+import { ToastComponent } from './toast.component';
 
 describe('Component: Toast', () => {
   let component: ToastComponent;
   let fixture: ComponentFixture<ToastComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ToastComponent]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [ToastComponent],
+      }).compileComponents();
     })
-      .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ToastComponent);
@@ -34,7 +35,7 @@ describe('Component: Toast', () => {
   it('should set the message and create the DOM element', () => {
     const mockMessage = {
       body: 'test message',
-      type: 'warning'
+      type: 'warning',
     };
     component.setMessage(mockMessage.body, mockMessage.type);
     expect(component.message.body).toBe(mockMessage.body);
@@ -46,5 +47,4 @@ describe('Component: Toast', () => {
     expect(el.textContent).toContain(mockMessage.body);
     expect(el.className).toContain(mockMessage.type);
   });
-
 });

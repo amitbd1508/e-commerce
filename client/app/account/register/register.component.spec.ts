@@ -1,40 +1,37 @@
-import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {Router} from '@angular/router';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
-import {RegisterComponent} from './register.component';
-import {ToastComponent} from '../../shared/components/toast/toast.component';
-import {AccountService} from '../account.service';
-import {LoggerService} from '../../shared/service/logger.service';
+import { RegisterComponent } from './register.component';
+import { ToastComponent } from '../../shared/components/toast/toast.component';
+import { AccountService } from '../account.service';
+import { LoggerService } from '../../shared/service/logger.service';
 
-class RouterMock {
-}
+class RouterMock {}
 
-class AccountServiceMock {
-}
+class AccountServiceMock {}
 
-class LoggerServiceMock {
-
-}
+class LoggerServiceMock {}
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [FormsModule, ReactiveFormsModule],
-      declarations: [RegisterComponent],
-      providers: [
-        ToastComponent,
-        {provide: Router, useClass: RouterMock},
-        {provide: AccountService, useClass: AccountServiceMock},
-        {provide: LoggerService, useClass: LoggerServiceMock}
-      ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [FormsModule, ReactiveFormsModule],
+        declarations: [RegisterComponent],
+        providers: [
+          ToastComponent,
+          { provide: Router, useClass: RouterMock },
+          { provide: AccountService, useClass: AccountServiceMock },
+          { provide: LoggerService, useClass: LoggerServiceMock },
+        ],
+      }).compileComponents();
     })
-      .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RegisterComponent);
@@ -52,7 +49,11 @@ describe('RegisterComponent', () => {
   });
 
   it('should display the username, email and password inputs', () => {
-    const [inputUsername, inputEmail, inputPassword] = fixture.debugElement.queryAll(By.css('input'));
+    const [
+      inputUsername,
+      inputEmail,
+      inputPassword,
+    ] = fixture.debugElement.queryAll(By.css('input'));
     expect(inputUsername.nativeElement).toBeTruthy();
     expect(inputEmail.nativeElement).toBeTruthy();
     expect(inputPassword.nativeElement).toBeTruthy();
@@ -66,6 +67,4 @@ describe('RegisterComponent', () => {
     expect(el).toBeTruthy();
     expect(el.textContent).toContain('Register');
   });
-
 });
-

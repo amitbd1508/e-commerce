@@ -1,13 +1,16 @@
-import {FormGroup, Validators} from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 
 export const validationConfig = {
   name: ['', [Validators.required, Validators.min(4), Validators.max(100)]],
   email: ['', [Validators.required, Validators.email]],
   password: ['', [Validators.required, Validators.minLength(6)]],
-  confirmation: ['', [Validators.required, Validators.minLength(6)]]
+  confirmation: ['', [Validators.required, Validators.minLength(6)]],
 };
 
-export function mustMatch(controlName: string, matchingControlName: string): any {
+export function mustMatch(
+  controlName: string,
+  matchingControlName: string
+): any {
   return (formGroup: FormGroup) => {
     const control = formGroup.controls[controlName];
     const matchingControl = formGroup.controls[matchingControlName];
@@ -19,7 +22,7 @@ export function mustMatch(controlName: string, matchingControlName: string): any
 
     // set error on matchingControl if validation fails
     if (control.value !== matchingControl.value) {
-      matchingControl.setErrors({mustMatch: true});
+      matchingControl.setErrors({ mustMatch: true });
     } else {
       matchingControl.setErrors(null);
     }
