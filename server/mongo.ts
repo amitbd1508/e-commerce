@@ -3,7 +3,7 @@ import * as mongoose from 'mongoose';
 async function setMongo(): Promise<void> {
   let mongodbURI;
   try {
-    if (process.env.NODE_ENV === 'test') { // Fixme: move to constrrant
+    if (process.env.NODE_ENV === 'test') {
       mongodbURI = process.env.MONGODB_TEST_URI;
     } else {
       mongodbURI = process.env.MONGODB_URI;
