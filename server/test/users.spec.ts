@@ -20,7 +20,7 @@ describe('User API', () => {
   before(() => {
     // Register a user for getting token
     chai.request(app)
-      .post('/api/register')
+      .post('/api/v1/register')
       .send(testUser1)
       .end((err, res) => {
         token = res.body.token;
@@ -38,7 +38,7 @@ describe('User API', () => {
   describe('Backend tests for users', () => {
     it('should get register a new user', done => {
       chai.request(app)
-        .post('/api/register')
+        .post('/api/v1/register')
         .send(testUser2)
         .end((err, res) => {
           res.should.have.status(200);
@@ -52,7 +52,7 @@ describe('User API', () => {
 
     it('should get log in a user', done => {
       chai.request(app)
-        .post('/api/login')
+        .post('/api/v1/login')
         .send({email: 'test@test.com', password: 'strong_password'})
         .end((err, res) => {
           res.should.have.status(200);
@@ -66,7 +66,7 @@ describe('User API', () => {
 
     it('should not get log in a user', done => {
       chai.request(app)
-        .post('/api/login')
+        .post('/api/v1/login')
         .send({email: 'test@test.com', password: 'wrong password'})
         .end((err, res) => {
           res.should.have.status(401);
@@ -76,7 +76,7 @@ describe('User API', () => {
 
     it('should get current account', done => {
       chai.request(app)
-        .get('/api/account')
+        .get('/api/v1/account')
         .set({Authorization: `Bearer ${token}`})
         .end((err, res) => {
           res.should.have.status(200);
@@ -86,7 +86,7 @@ describe('User API', () => {
 
     it('should not get current account', done => {
       chai.request(app)
-        .get('/api/account')
+        .get('/api/v1/account')
         .end((err, res) => {
           res.should.have.status(401);
           done();

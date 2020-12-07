@@ -71,7 +71,7 @@ describe('Products API', () => {
   before((done) => {
     // Register a user for getting token
     chai.request(app)
-      .post('/api/register')
+      .post('/api/v1/register')
       .send(testUser1)
       .end((err, res) => {
         token = res.body.token;
@@ -94,7 +94,7 @@ describe('Products API', () => {
 
     it('should get all products', done => {
       chai.request(app)
-        .get('/api/product')
+        .get('/api/v1/product')
         .set({Authorization: `Bearer ${token}`})
         .end((err, res) => {
           res.should.have.status(200);
@@ -106,7 +106,7 @@ describe('Products API', () => {
 
     it('should not get products for missing authentication', done => {
       chai.request(app)
-        .get('/api/product')
+        .get('/api/v1/product')
         .end((err, res) => {
           res.should.have.status(401);
           done();
@@ -115,7 +115,7 @@ describe('Products API', () => {
 
     it('should get a product', done => {
       chai.request(app)
-        .get('/api/product/1')
+        .get('/api/v1/product/1')
         .set({Authorization: `Bearer ${token}`})
         .end((err, res) => {
           res.should.have.status(200);
@@ -130,7 +130,7 @@ describe('Products API', () => {
 
   it('should not get a product', done => {
     chai.request(app)
-      .get('/api/product/10')
+      .get('/api/v1/product/10')
       .set({Authorization: `Bearer ${token}`})
       .end((err, res) => {
         res.should.have.status(400);
