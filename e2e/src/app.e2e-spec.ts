@@ -1,20 +1,18 @@
 import {browser, logging} from 'protractor';
-import {Angular2FullStackPage} from './app.po';
+import {ECommercePage} from './app.po';
 
 describe('Component: App', () => {
-  let page: Angular2FullStackPage;
+  let page: ECommercePage;
 
   beforeEach(() => {
-    page = new Angular2FullStackPage();
+    page = new ECommercePage();
   });
 
   it('should display the expanded navbar for high resolutions', async () => {
     browser.manage().window().setSize(1024, 768);
     await page.navigateTo();
-    expect(await page.getNavbarElement(0)).toEqual('Home');
-    expect(await page.getNavbarElement(1)).toEqual('Cats');
-    expect(await page.getNavbarElement(2)).toEqual('Login');
-    expect(await page.getNavbarElement(3)).toEqual('Register');
+    expect(await page.getNavbarElement(0)).toEqual('Login');
+    expect(await page.getNavbarElement(1)).toEqual('Register');
     expect(await page.getNavbarButton()).toBeFalsy();
   });
 
