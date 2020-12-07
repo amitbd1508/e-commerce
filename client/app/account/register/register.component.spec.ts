@@ -6,11 +6,16 @@ import {Router} from '@angular/router';
 import {RegisterComponent} from './register.component';
 import {ToastComponent} from '../../shared/components/toast/toast.component';
 import {AccountService} from '../account.service';
+import {LoggerService} from '../../shared/service/logger.service';
 
 class RouterMock {
 }
 
 class AccountServiceMock {
+}
+
+class LoggerServiceMock {
+
 }
 
 describe('RegisterComponent', () => {
@@ -24,7 +29,8 @@ describe('RegisterComponent', () => {
       providers: [
         ToastComponent,
         {provide: Router, useClass: RouterMock},
-        {provide: AccountService, useClass: AccountServiceMock}
+        {provide: AccountService, useClass: AccountServiceMock},
+        {provide: LoggerService, useClass: LoggerServiceMock}
       ]
     })
       .compileComponents();
@@ -59,7 +65,6 @@ describe('RegisterComponent', () => {
     const el = fixture.debugElement.query(By.css('button')).nativeElement;
     expect(el).toBeTruthy();
     expect(el.textContent).toContain('Register');
-    expect(el.disabled).toBeTruthy();
   });
 
 });

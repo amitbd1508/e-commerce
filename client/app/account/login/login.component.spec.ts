@@ -4,6 +4,7 @@ import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {LoginComponent} from './login.component';
 import {AccountService} from '../account.service';
+import {ToastComponent} from '../../shared/components/toast/toast.component';
 
 class AccountServiceMock {
 }
@@ -29,6 +30,7 @@ describe('LoginComponent', () => {
       declarations: [LoginComponent],
       providers: [
         FormBuilder,
+        ToastComponent,
         {provide: AccountService, useClass: AccountServiceMock},
         {provide: Router, useClass: RouterMock},
         {provide: ActivatedRoute, useClass: ActivatedRouteMock}
@@ -64,7 +66,6 @@ describe('LoginComponent', () => {
     const el = fixture.debugElement.query(By.css('button')).nativeElement;
     expect(el).toBeTruthy();
     expect(el.textContent).toContain('Login');
-    expect(el.disabled).toBeTruthy();
   });
 
 });
