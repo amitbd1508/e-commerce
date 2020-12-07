@@ -54,7 +54,7 @@ export class ProductListItemDetailsComponent implements OnInit {
   }
 
   increaseQuantity(): void {
-    if (this.quantity <= this.selectedVariant.quantity) {
+    if (this.quantity < this.selectedVariant.quantity) {
       this.quantity++;
     }
   }
