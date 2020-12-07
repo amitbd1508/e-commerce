@@ -17,6 +17,8 @@ function setRoutes(app): void {
   // Products
   router.route('/product').get(auth.isJWTValid, productCtrl.getAll);
   router.route('/product/:id').get(auth.isJWTValid, productCtrl.get);
+
+  // Checkout
   router.route('/checkout').post(auth.isJWTValid, productCtrl.checkout);
 
   // Apply the routes to our application with the prefix /api

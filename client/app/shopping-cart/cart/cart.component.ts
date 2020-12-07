@@ -19,8 +19,7 @@ export class CartComponent implements OnInit {
     private service: CartService,
     private router: Router,
     private logger: LoggerService,
-    public toast: ToastComponent,
-    private productService: ProductService
+    public toast: ToastComponent
   ) {}
 
   ngOnInit(): void {
@@ -33,8 +32,10 @@ export class CartComponent implements OnInit {
   }
 
   checkOut(): void {
-    this.productService.checkout(this.service.getCartItems()).subscribe(
+    this.service.checkout(this.service.getCartItems()).subscribe(
       (it) => {
+        this.toast.setMessage(`You have placed an order of TK ${it.totalPrice}`, 'warning', 3000);
+
         this.service.clearCart();
         this.router.navigate(['/product']);
       },

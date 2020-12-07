@@ -1,6 +1,8 @@
-import {Injectable} from '@angular/core';
-import {CartItem} from '../shared/models/cart';
-import {MessengerService} from '../shared/service/messenger.service';
+import { Injectable } from '@angular/core';
+import { CartItem } from '../shared/models/cart';
+import { MessengerService } from '../shared/service/messenger.service';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +14,9 @@ export class CartService {
    It only works if product inventory is not decease/increase by any other order or user
    */
 
-  constructor(private messengerService: MessengerService) {
-  }
+  constructor(private messengerService: MessengerService,
+              private http: HttpClient
+  ) {}
 
   getCartItems(): CartItem[] {
     const cartItems: CartItem[] = JSON.parse(localStorage.getItem('cartItems'));
@@ -80,5 +83,9 @@ export class CartService {
   clearCart(): void {
     localStorage.removeItem('cartItems');
     this.messengerService.updateCart();
+  }
+
+  checkout(cart: CartItem[]): Observable<any> {
+    return this.http.post<any>(`/api/v1/checkout`, cart);
   }
 }

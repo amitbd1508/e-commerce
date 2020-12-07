@@ -5,8 +5,7 @@ import { CurrentUser } from '../../shared/models/user';
 
 @Component({
   selector: 'app-nav-bar',
-  templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.css'],
+  templateUrl: './nav-bar.component.html'
 })
 export class NavBarComponent implements OnInit {
   currentUser$: Observable<CurrentUser>;

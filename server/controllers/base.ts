@@ -9,7 +9,7 @@ abstract class BaseCtrl {
     } catch (err) {
       return res.status(400).json({ error: err.message });
     }
-  };
+  }
 
   // Count all
   count = async (req, res) => {
@@ -19,7 +19,7 @@ abstract class BaseCtrl {
     } catch (err) {
       return res.status(400).json({ error: err.message });
     }
-  };
+  }
 
   // Insert
   insert = async (req, res) => {
@@ -29,7 +29,7 @@ abstract class BaseCtrl {
     } catch (err) {
       return res.status(400).json({ error: err.message });
     }
-  };
+  }
 
   // Get by id
   get = async (req, res) => {
@@ -43,7 +43,7 @@ abstract class BaseCtrl {
     } catch (err) {
       return res.status(500).json({ error: err.message });
     }
-  };
+  }
 
   // Update by id
   update = async (req, res) => {
@@ -53,7 +53,7 @@ abstract class BaseCtrl {
     } catch (err) {
       return res.status(400).json({ error: err.message });
     }
-  };
+  }
 
   // Delete by id
   delete = async (req, res) => {
@@ -63,7 +63,7 @@ abstract class BaseCtrl {
     } catch (err) {
       return res.status(400).json({ error: err.message });
     }
-  };
+  }
 }
 
 export default BaseCtrl;

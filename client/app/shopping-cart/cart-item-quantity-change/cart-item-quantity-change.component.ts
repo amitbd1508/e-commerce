@@ -24,12 +24,6 @@ export class CartItemQuantityChangeComponent implements OnInit {
   }
 
   increment(cartItem: CartItem): void {
-    console.log(
-      'increment',
-      cartItem.numberOfAvailableProduct,
-      cartItem.quantity
-    );
-
     if (this.service.canIncreaseQuantity(cartItem)) {
       cartItem.quantity++;
       this.service.updateCart(cartItem);
