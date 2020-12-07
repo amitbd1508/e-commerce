@@ -3,7 +3,7 @@
   "version": "11.0.0",
   "license": "MIT",
   "author": "Amit Ghosh",
-  "description": "E Commerce project for cefalo assignment built using Angular 2+, Express, Mongoose and Node.",
+  "description": "This is a assignment of a simple shopping cart functionality for an e-commerce website.",
   "engines": {
     "node": "14.15.0",
     "npm": "6.14.8"

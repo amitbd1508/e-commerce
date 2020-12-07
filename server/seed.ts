@@ -2,10 +2,9 @@ import setMongo from './mongo';
 import * as dotenv from 'dotenv';
 
 import ProductCtrl from './controllers/product';
-import {products} from './seed/product.seed';
+import { products } from './seed/product.seed';
 
 dotenv.config();
-
 
 async function seed(): Promise<void> {
   try {
