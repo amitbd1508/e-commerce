@@ -1,12 +1,13 @@
 import * as chai from 'chai';
 import {after, before, describe, it} from 'mocha';
 
+// Setting environment to test
+process.env.NODE_ENV = 'test';
+
 import {app} from '../app';
 import User from '../models/user';
 import chaiHttp = require('chai-http');
 import Product from '../models/product';
-
-process.env.NODE_ENV = 'test';
 
 chai.use(chaiHttp).should();
 
@@ -127,13 +128,12 @@ describe('Products API', () => {
     });
   });
 
-  it('should not get product', done => {
+  it('should not get a product', done => {
     chai.request(app)
       .get('/api/product/10')
       .set({Authorization: `Bearer ${token}`})
       .end((err, res) => {
         res.should.have.status(400);
-        res.error.should.be.a('object');
         done();
       });
   });
