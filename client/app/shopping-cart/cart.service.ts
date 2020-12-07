@@ -61,7 +61,7 @@ export class CartService {
   }
 
   canIncreaseQuantity(cartItem: CartItem): boolean {
-    return cartItem.quantity < cartItem.numberOfAvailableProduct;
+    return cartItem.quantity <= cartItem.numberOfAvailableProduct;
   }
 
   removeCartItem(cartItem: CartItem): void {
