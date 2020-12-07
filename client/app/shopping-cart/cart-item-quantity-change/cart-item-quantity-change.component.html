@@ -1,16 +1,15 @@
-<div class="btn-group">
-  <button (click)="decrement(cartItem)"
-          class="btn btn-danger mr-4"
-          type="button">
-    <i class="fa fa-minus"></i>
-  </button>
-  <input [(ngModel)]="cartItem.quantity" class="form-control text-black" disabled max="100"
-         min="1"
-         name="quantity"
-         type="number">
-  <button (click)="increment(cartItem)"
-          class="btn btn-success ml-4"
-          type="button">
-    <i class="fa fa-plus"></i>
-  </button>
+<div class="input-group">
+        <span class="input-group-btn">
+          <button (click)="decrement(cartItem)" class="quantity-left-minus btn btn-danger btn-number"
+                  type="button">
+                 <i class="fa fa-minus"></i>
+          </button>
+        </span>
+  <input [(ngModel)]="cartItem.quantity" class="form-control mr-2 ml-2" id="quantity" max="100" min="1" name="quantity"
+         type="text">
+  <span class="input-group-btn">
+            <button (click)="increment(cartItem)" class="btn btn-success" type="button">
+                 <i class="fa fa-plus"></i>
+            </button>
+        </span>
 </div>
