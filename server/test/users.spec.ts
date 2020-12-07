@@ -28,7 +28,7 @@ describe('User API', () => {
 
   after((done) => {
     // Remove all user test data for next use
-    User.remove({}, err => {
+    User.deleteMany({}, err => {
       done();
     });
   });

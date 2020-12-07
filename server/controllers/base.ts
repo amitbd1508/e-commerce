@@ -36,6 +36,10 @@ abstract class BaseCtrl {
   get = async (req, res) => {
     try {
       const obj = await this.model.findOne({id: req.params.id});
+
+      if (!obj) {
+        res.status(400).send('Not Found');
+      }
       res.status(200).json(obj);
     } catch (err) {
       return res.status(500).json({error: err.message});
