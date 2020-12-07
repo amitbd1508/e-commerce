@@ -1,15 +1,17 @@
 <div *ngIf="product" class="container">
   <div class="row">
-    <div class="col-md-12">
-      <div>
-        <h3 class="product-name">{{product.name}}</h3>
+    <div class="col-md-6 pull-left">
+      <div class="mb-lg-5">
+        <h2><strong>{{product.name}}</strong></h2>
       </div>
       <div>
-        <h5>Price: <span>BDT{{product.price}}</span></h5>
+        <h5><strong class="mr-2">Price:</strong>   <span><small>BDT </small>{{product.price}}</span></h5>
       </div>
       <div>
-        <h5>In Stock: <span>{{selectedVariant.quantity}}</span></h5>
+        <h5><strong class="mr-2">In Stock:</strong> <span>{{selectedVariant.quantity}}</span></h5>
       </div>
+    </div>
+    <div class=" col-md-6 pull-right">
       <div>
         <h4 class="mb-2">Quantity: </h4>
         <div class="input-group">
@@ -28,7 +30,7 @@
           </span>
         </div>
       </div>
-      <div class="product-size-container">
+      <div class="mt-4">
         <h4>Product Variants: <span>{{selectedVariant.color}}</span></h4>
         <div class="btn-group mt-4">
           <label (click)="selectColor(variant)"
@@ -39,7 +41,7 @@
         </div>
       </div>
 
-      <div *ngIf="selectedVariant.size.length>0" class="product-size-container">
+      <div *ngIf="selectedVariant.size.length>0" class="mt-4">
         <h4>Product Size: <span></span>{{selectedVariantSize}}</h4>
 
         <div class="btn-group mt-4">
@@ -50,14 +52,14 @@
                  class="btn btn-outline-secondary mr-2" role="button" tabindex="0">{{size}}</label>
         </div>
       </div>
-      <div class="cart-button mt-4">
+      <div class="mt-4">
         <button (click)="handleAddToCart(product)" [disabled]="!product.available" class="btn btn-success">Add to Cart
         </button>
       </div>
     </div>
   </div>
 
+  <app-loading [condition]="isLoading"></app-loading>
 </div>
 
 <app-toast [message]="toast.message"></app-toast>
-<app-loading [condition]="isLoading"></app-loading>

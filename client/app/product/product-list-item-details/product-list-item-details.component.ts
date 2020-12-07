@@ -11,7 +11,6 @@ import {LoggerService} from '../../shared/service/logger.service';
 @Component({
   selector: 'app-product-list-item-details',
   templateUrl: './product-list-item-details.component.html',
-  styleUrls: ['./product-list-item-details.component.scss']
 })
 export class ProductListItemDetailsComponent implements OnInit {
 
@@ -48,7 +47,11 @@ export class ProductListItemDetailsComponent implements OnInit {
           this.toast.setMessage(`Currently this  product is not available`, 'info');
         }
       },
-      error => this.loggerService.logError('ProductListItemDetailsComponent', error.toString()),
+      error => {
+        this.loggerService.logError('ProductListItemDetailsComponent', error.error.toString());
+        this.toast.setMessage('Product not found', 'danger', 3000);
+        this.router.navigate(['/product']);
+      },
       () => this.isLoading = false
     );
   }
@@ -78,7 +81,7 @@ export class ProductListItemDetailsComponent implements OnInit {
     };
 
     this.cartService.addProductToCart(cartItem);
-    this.toast.setMessage(`Products is added to cart. Please go to cart for checkout !`, 'warning');
+    this.toast.setMessage(`Products is added to cart. Please go to cart for checkout !`, 'warning', 3000);
 
     this.router.navigate(['/product']);
   }
